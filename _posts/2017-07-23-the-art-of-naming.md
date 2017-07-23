@@ -1,11 +1,11 @@
 ---
 layout: post
-title: '编程中命名的艺术'
+title: '编程中起名的艺术'
 image: /public/img/napoleon.jpg
 ---
 
 
-> 计算机科学中仅有两件难事：缓存失效和事物命名。<br>
+> 计算机科学中仅存在两件难事：缓存失效和事物命名。<br>
 &mdash; <cite>Phil Karlton</cite>
 
 ## 一
