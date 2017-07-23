@@ -10,7 +10,7 @@ image: /public/img/napoleon.jpg
 
 ## 一
 
-定理 1：代码应该是写给人来读的，只不过顺便能在机器执行而已。
+**定理 1：代码应该是写给人来读的，只不过顺便能在机器执行而已。**
 {:.message}
 
 代码大部分时候是用来维护的，而不是用来实现功能的，这个准则适用于大部分的软件工程。比如我所知道的一个软件系统，开发了三个月即上线使用，而用于维护的时间却是以年为单位的，开发者花大量的时间用于调整代码以确保其正确运行。
@@ -20,7 +20,7 @@ image: /public/img/napoleon.jpg
 ![代码质量衡量标准](https://infp.github.io/blogimages/code-quality.jpg){:.center}
 
 
-定理 2：好的代码胜过好的注释。
+**定理 2：好的代码胜过好的注释。**
 {:.message}
 
 好的代码自己本身就是最好的文档。当你打算加注释的时候，问问自己“我如何才能把我的代码改善到不需增加注释？”重构自己的代码，然后使文档让其更清楚。
@@ -48,11 +48,11 @@ userCount += 1;
 
 起名的首要原则是把信息装到名字中。代码中的名字，便是你和其他读代码的人之间的桥梁，准确的名字，才能传递准确的信息。
 
-应该避免使用抽象的名字，比如不要使用 `tmp` 或 `getData` 这样空洞抽象的名字。
+**避免使用抽象的名字。**比如不要使用 `tmp` 或 `getData` 这样空洞抽象的名字。
 
-可以在名字中增加额外的信息。比如 `string hex_id`、`size_kb` 等。在给布尔类型命名时，加上 is、has、can、should 让含义更清晰，比如 `bool use_ssl = true` 好于 `bool disable_ssl = false`。
+**可以在名字中增加额外的信息。**比如 `string hex_id`、`size_kb` 等。在给布尔类型命名时，加上 `is`、`has`、`can`、`should` 让含义更清晰，比如 `bool use_ssl = true` 好于 `bool disable_ssl = false`。
 
-使用不会被误解的名字。比如用 `first` 和 `last` 来表示包含的范围（闭区间），用 `begin` 和 `end` 来表示排除的范围（开区间）：
+**使用不会被误解的名字。**比如用 `first` 和 `last` 来表示包含的范围（闭区间），用 `begin` 和 `end` 来表示排除的范围（开区间）：
 
 ```java
 print integer_range(start=2, stop=4)
@@ -61,4 +61,4 @@ print integer_range(start=2, stop=4)
 set.PrintKeys(first="Bart", last="Maggie")
 ```
 
-使用英文来命名。有一些国内的程序员为了方便，喜欢用拼音甚至缩写来命名，这应该被严令禁止。
+**使用英文来命名。**有一些国内的程序员为了方便，喜欢用拼音甚至缩写来命名，这应该被严令禁止。
