@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '起名的艺术'
+title: '编程中命名的艺术'
 image: /public/img/napoleon.jpg
 ---
 
