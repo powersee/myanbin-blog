@@ -63,7 +63,11 @@
       {% endif %}
 
       {% if site.author.weibo %}
-        <a href="http://weibo.com/{{ site.author.weibo }}"><span class="icon icon-weibo"></span></a>
+        <a href="https://weibo.com/{{ site.author.weibo }}"><span class="icon icon-weibo"></span></a>
+      {% endif %}
+
+      {% if site.author.facebook %}
+        <a href="https://www.facebook.com/{{ site.author.weibo }}"><span class="icon icon-facebook"></span></a>
       {% endif %}
 
       <a href="{{ site.baseurl }}/atom.xml"><span class="icon icon-rss"></span></a>
