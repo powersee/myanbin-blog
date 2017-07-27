@@ -377,11 +377,11 @@ html {
  */
 @media print {
   @page {
-    margin: 3cm;
+    margin: 2cm;
   }
   html {
     font-family: "PT Serif", Georgia, "STSongti", "STZhongsong", "SimSun", serif;
-    font-size: 18pt;
+    font-size: 14pt;
   }
   #_sidebar, #_menu {
     display: none;
@@ -393,13 +393,28 @@ html {
   .content {
     padding: 0;
   }
+  .content .message {
+    border: 1px solid;
+  }
+  .content hr {
+    visibility: hidden;
+  }
+  .content h2 {
+    orphans: 2;
+    widows: 2;
+  }
+  .content pre {
+    white-space: pre-line;
+  }
+  .content p {
+    text-indent: 2em;
+    margin-bottom: 0.6em;
+  }
+  .content blockquote p {
+    text-indent: 0;
+  }
   // To force this heading to always be the beginning of a page
   h1 {
     page-break-before: always;
-  }
-  // To avoid breaks directly after a heading
-  h1, h2, h3, h4, h5, h6 {
-    page-break-inside: avoid;
-    page-break-after: avoid;
   }
 }

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '我的 Git 命令清单'
+title: 'Git 命令清单'
 tags: [code]
 ---
 

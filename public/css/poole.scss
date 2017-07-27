@@ -164,7 +164,7 @@ pre {
   font-family: Menlo, Monaco, "Source Code Pro", Consolas, "Microsoft Yahei", monospace;
 }
 code {
-  padding: .18em .5em;
+  padding: .18em;
   /* Could be mistaken for a link if the user choses a similar link-color, so better no colored inline code. */
   border-radius: 0px;
   font-size: 1rem;
@@ -176,10 +176,6 @@ pre {
   padding: 1rem;
   line-height: 1.2;
   /* Prevent code linebreaks and allow side-scrolling (much better readability on mobile) */
-  /*white-space: pre;
-  white-space: pre-wrap;
-  word-break: break-all;
-  word-wrap: break-word;*/
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -219,15 +215,6 @@ blockquote::before {
 blockquote p:last-child {
   margin-bottom: 0;
 }
-@media (max-width: 48em) {
-  blockquote::before {
-    display: none;
-  }
-  blockquote {
-    border-left: .5rem solid #f6f6f6;
-  }
-}
-
 cite {
   font-style: italic;
 }
