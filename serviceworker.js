@@ -1,4 +1,12 @@
-const CACHE_VERSION = 'v1';
+/**
+ * serviceworker.js
+ * 
+ * Designed, built, and released under MIT license by @myanbin. Learn more at
+ * https://github.com/myanbin
+ */
+
+
+const CACHE_VERSION = 'v2';
 const CACHE_FILES = [
   '/',
   '/index.html',
@@ -43,20 +51,20 @@ this.addEventListener('fetch', function (event) {
     caches.match(event.request).then(function (response) {
       if (response !== undefined) {
         return response;
-      } else {
-        return fetch(event.request).then(function (response) {
-          if (response.status !== 200 || response.type !== 'basic') {
-            return response;
-          }
-          let responseClone = response.clone();
-          caches.open(CACHE_VERSION).then(function (cache) {
-            cache.put(event.request, responseClone);
-          });
-          return response;
-        }).catch(function () {
-          return offlineResponse(event.request);
-        });
       }
+      let requestClone = event.request.clone();
+      return fetch(requestClone).then(function (response) {
+        if (response.status !== 200 || response.type !== 'basic') {
+          return response;
+        }
+        let responseClone = response.clone();
+        caches.open(CACHE_VERSION).then(function (cache) {
+          cache.put(event.request, responseClone);
+        });
+        return response;
+      }).catch(function () {
+        return offlineResponse(event.request);
+      });
     })
   );
 });
