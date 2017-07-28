@@ -1,4 +1,4 @@
-const CACHE_VERSION = '0.0.1';
+const CACHE_VERSION = 'beta';
 const CACHE_FILES = [
   '/',
   '/index.html',
@@ -6,10 +6,11 @@ const CACHE_FILES = [
   '/link.html',
   '/offline.html',
   '/public/css/styles.css',
-  '/public/js/drawer.js',
+  '/public/fonts/icomoon.ttf',
   '/public/img/cat.jpg',
   '/public/img/redflag.jpg',
-  '/public/img/coconut.jpg'
+  '/public/img/coconut.jpg',
+  '/public/js/drawer.js'
 ];
 const IGNORE_LISTS = [
   'www.google-analytics.com',
