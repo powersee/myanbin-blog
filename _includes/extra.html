@@ -10,3 +10,15 @@ if (navigator.platform === "Win32") {
   }
 }
 </script>
+
+{% if page.url == '/' %}
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/serviceworker.js').then(function (registration) {
+    console.log('Registration succeeded. Scope is ' + registration.scope);
+  }).catch(function(error) {
+    console.log('Registration failed with ' + error);
+  });
+}
+</script>
+{% endif %}
