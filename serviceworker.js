@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'beta';
+const CACHE_VERSION = 'v1';
 const CACHE_FILES = [
   '/',
   '/index.html',
