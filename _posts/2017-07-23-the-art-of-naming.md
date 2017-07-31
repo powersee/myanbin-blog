@@ -1,7 +1,6 @@
 ---
 layout: post
 title: '编程中起名的艺术'
-image: /public/img/napoleon.jpg
 ---
 
 

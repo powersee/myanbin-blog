@@ -6,7 +6,7 @@
  */
 
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const CACHE_FILES = [
   '/',
   '/index.html',
@@ -17,7 +17,9 @@ const CACHE_FILES = [
   '/public/fonts/icomoon.ttf',
   '/public/img/cat.jpg',
   '/public/img/redflag.jpg',
-  '/public/img/coconut.jpg',
+  '/public/img/sierra.jpg',
+  '/public/img/skyline.jpg',
+  '/public/img/buckow.jpg',
   '/public/js/drawer.js'
 ];
 const IGNORE_LISTS = [
