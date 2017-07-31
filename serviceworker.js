@@ -6,7 +6,7 @@
  */
 
 
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const CACHE_FILES = [
   '/',
   '/index.html',
