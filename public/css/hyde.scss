@@ -32,7 +32,7 @@
 
 html {
   /*font-family: "PT Serif", Georgia, serif;*/
-  font-family: "-apple-system", "Open Sans", "Helvetica Neue", "PingFang SC", sans-serif;
+  font-family: "Open Sans", "Helvetica Neue", "PingFang SC", 'Microsoft Yahei', sans-serif;
 }
 @media (min-width: 48em) {
   html {
@@ -170,7 +170,6 @@ html {
 /* About section */
 .sidebar-about > h1 {
   /*font-family: "PT Serif", Georgia, serif;*/
-  font-family: "-apple-system", "Open Sans", "Helvetica Neue", "PingFang SC", sans-serif;
   color: #fff;
   margin-top: 0;
   font-size: 2rem;
@@ -186,7 +185,6 @@ html {
 }
 .sidebar-nav-item {
   /*font-family: "PT Serif", Georgia, serif;*/
-  font-family: "-apple-system", "Open Sans", "Helvetica Neue", "PingFang SC", sans-serif;
   font-weight: bold;
   display: block;
   line-height: 1.75;
