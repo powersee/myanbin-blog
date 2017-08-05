@@ -1,5 +1,5 @@
 ---
 layout: blog_by_tag
-tag: life
-permalink: /life/
+tag: read
+permalink: /read/
 ---
