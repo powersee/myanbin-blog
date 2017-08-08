@@ -23,12 +23,6 @@ code:
   description: >
     像建筑师、作曲家和画家一样，黑客们也在进行着富有创造性和挑战性的工作：他们将代码构筑成如今的互联网和计算机的世界。
 
-photo:
-  name: 照片
-  image: /public/img/sierra.jpg
-  description: >
-    用光影来记录一切。
-
 read:
   name: 读书
   image: /public/img/yunshan.jpg
