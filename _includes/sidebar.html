@@ -23,12 +23,12 @@
 <aside id="_sidebar" class="sidebar" {% if image %}style="background-image:url('{{ image }}')"{% endif %}>
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <h1><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>
+      <h1>{{ site.title }}</h1>
       {{ site.description | markdownify }}
     </div>
 
     <nav class="sidebar-nav">
-
+      <a class="sidebar-nav-item{% if page.url == '/' %} active{% endif %}" href="{{ site.baseurl }}/">主页</a>
       {% comment %}
         The code below dynamically generates a sidebar nav of pages with
         `layout: page` in the front-matter. See readme for usage.
