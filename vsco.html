@@ -17,6 +17,15 @@ permalink: vsco.html
     width: 250px;
     margin-bottom: 10px;
   }
+  .grid-size {
+    width: 250px;
+  }
+  @media (max-width: 48em) {
+    .grid-item,
+    .grid-size {
+      width: calc(50% - 10px);
+    }
+  }
   .grid-item a {
     display: block;
     width: 100%;
@@ -36,6 +45,7 @@ permalink: vsco.html
 <div class="page">
   <h1 class="page-title">胶片影集</h1>
   <div class="grid">
+    <div class="grid-size"></div>
     <div class="grid-item"><a href="#"><img src="https://infp.github.io/photos/7.jpg"></a></div>
     <div class="grid-item"><a href="#"><img src="https://infp.github.io/photos/6.jpg"></a></div>
     <div class="grid-item"><a href="#"><img src="https://infp.github.io/photos/5.jpg"></a></div>
@@ -53,7 +63,7 @@ permalink: vsco.html
 
   var msnry = new Masonry(grid, {
     itemSelector: '.grid-item',
-    columnWidth: 250,
+    columnWidth: '.grid-size',
     gutter: 10,
     percentPosition: true
   });
