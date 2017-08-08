@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "胶片"
+title: "影集"
 permalink: vsco.html
 ---
 
@@ -34,15 +34,15 @@ permalink: vsco.html
 </style>
 
 <div class="page">
-  <h1 class="page-title">胶片</h1>
+  <h1 class="page-title">胶片影集</h1>
   <div class="grid">
-    <div class="grid-item"><a href="#"><img src="//infp.github.io/photos/7.jpg"></a></div>
-    <div class="grid-item"><a href="#"><img src="//infp.github.io/photos/6.jpg"></a></div>
-    <div class="grid-item"><a href="#"><img src="//infp.github.io/photos/5.jpg"></a></div>
-    <div class="grid-item"><a href="#"><img src="//infp.github.io/photos/4.jpg"></a></div>
-    <div class="grid-item"><a href="#"><img src="//infp.github.io/photos/3.jpg"></a></div>
-    <div class="grid-item"><a href="#"><img src="//infp.github.io/photos/2.jpg"></a></div>
-    <div class="grid-item"><a href="#"><img src="//infp.github.io/photos/1.jpg"></a></div>
+    <div class="grid-item"><a href="#"><img src="https://infp.github.io/photos/7.jpg"></a></div>
+    <div class="grid-item"><a href="#"><img src="https://infp.github.io/photos/6.jpg"></a></div>
+    <div class="grid-item"><a href="#"><img src="https://infp.github.io/photos/5.jpg"></a></div>
+    <div class="grid-item"><a href="#"><img src="https://infp.github.io/photos/4.jpg"></a></div>
+    <div class="grid-item"><a href="#"><img src="https://infp.github.io/photos/3.jpg"></a></div>
+    <div class="grid-item"><a href="#"><img src="https://infp.github.io/photos/2.jpg"></a></div>
+    <div class="grid-item"><a href="#"><img src="https://infp.github.io/photos/1.jpg"></a></div>
   </div>
 </div>
 
@@ -51,14 +51,14 @@ permalink: vsco.html
 <script>
   var grid = document.querySelector('.grid');
 
-  var msnry = new Masonry( grid, {
+  var msnry = new Masonry(grid, {
     itemSelector: '.grid-item',
     columnWidth: 250,
     gutter: 10,
     percentPosition: true
   });
 
-  imagesLoaded( grid ).on( 'progress', function() {
+  imagesLoaded(grid).on( 'progress', function() {
     msnry.layout();
   });
 </script>

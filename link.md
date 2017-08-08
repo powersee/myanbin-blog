@@ -2,18 +2,13 @@
 layout: page
 title: "友链"
 permalink: link.html
-color: '#da4939'
 order: 5
 ---
 
 
-{% comment %}
-  CSS just for this file
-{% endcomment %}
-
-
 海内存知己，天涯若比邻。
 {:.lead}
+
 
 * [阿仲的博客](https://banyaner.github.io/)
 
