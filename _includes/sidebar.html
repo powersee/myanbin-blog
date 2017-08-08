@@ -28,10 +28,6 @@
     </div>
 
     <nav class="sidebar-nav">
-      {% for tag_key in site.sidebar_tags %}
-        {% assign tag = site.data.tags[tag_key] %}
-        <a class="sidebar-nav-item{% if page.tag == tag_key %} active{% endif %}" href="{{ site.baseurl }}/tag/{{ tag_key }}/">{{ tag.name }}</a>
-      {% endfor %}
 
       {% comment %}
         The code below dynamically generates a sidebar nav of pages with
