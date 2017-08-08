@@ -6,7 +6,7 @@
  */
 
 
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const CACHE_FILES = [
   '/',
   '/index.html',
@@ -20,7 +20,7 @@ const CACHE_FILES = [
   '/public/img/sierra.jpg',
   '/public/img/skyline.jpg',
   '/public/img/buckow.jpg',
-  '/public/js/drawer.js'
+  '/public/js/drawer.min.js'
 ];
 const IGNORE_LISTS = [
   'www.google-analytics.com',

@@ -15,7 +15,7 @@ title: '编程中起名的艺术'
 
 因此，编写可读代码成了用于衡量代码质量的重要标准之一（另外一个熟知的标准是正确性）。
 
-![代码质量衡量标准](https://infp.github.io/blogimages/code-quality.jpg){:.center}
+![代码质量衡量标准](https://infp.github.io/images/code-quality.jpg){:.center}
 
 
 **定理 2：好的代码胜过好的注释。**
