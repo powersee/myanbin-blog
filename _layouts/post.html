@@ -8,7 +8,7 @@ layout: default
   {% for post_tag in post.tags %}
     {% assign tag = site.data.tags[post_tag] %}
     {% if tag %}
-      {% capture tags_content_temp %}{{ tags_content }}<a href="{{ site.baseurl }}/tag/{{ post_tag }}/">{{ tag.name }}</a>{% if forloop.last == false %}<span>, </span>{% endif %}{% endcapture %}
+      {% capture tags_content_temp %}{{tags_content}}<a href="{{site.baseurl}}/{{post_tag}}/">{{tag.name}}</a>{% if forloop.last == false %}<span>, </span>{% endif %}{% endcapture %}
       {% assign tags_content = tags_content_temp %}
     {% endif %}
   {% endfor %}
@@ -17,14 +17,14 @@ layout: default
 {% endif %}
 
 <article class="post">
-  <h1 class="post-title">{{ page.title }}</h1>
+  <h1 class="post-title">{{page.title}}</h1>
   <div class="post-date">
-    <span><span class="icon icon-calendar"></span> Post on <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %d, %Y' }}</time> &middot;</span>
+    <span><span class="icon icon-calendar"></span> Post on <time datetime="{{page.date | date_to_xmlschema}}">{{page.date | date: '%B %d, %Y'}}</time> &middot;</span>
     <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> views &middot;</span>
-    <span>Edit it on <a href="https://github.com/myanbin/myanbin.github.io/edit/master/{{  page.path }}">Github</a></span>
+    <span>Edit it on <a href="https://github.com/myanbin/myanbin.github.io/edit/master/{{page.path}}">Github</a></span>
   </div>
   <hr>
-  {{ content }}
+  {{content}}
 </article>
 
 {% if site.author.about %}
@@ -32,10 +32,10 @@ layout: default
   <h2 class="aside-title">关于作者</h2>
 
   {% if site.author.photo %}
-  <img class="me" src="{{ site.author.photo }}" alt="{{ site.author.name }}"/>
+  <img class="me" src="{{site.author.photo}}" alt="{{site.author.name}}"/>
   {% endif %}
 
-  {{ site.author.about | markdownify }}
+  {{site.author.about | markdownify}}
 </aside>
 {% endif %}
 
@@ -53,9 +53,9 @@ layout: default
       {% if forloop.index < 4 or plusone == true %}
         <li>
           <h4>
-            <a href="{{ post.url | prepend:site.baseurl }}">
-              <span>{{ post.title }}</span>
-              <small>{{ post.date | date: "%m/%d/%y" }}</small>
+            <a href="post.url | prepend:site.baseurl}}">
+              <span>{{post.title}}</span>
+              <small>{{post.date | date: "%m/%d/%y"}}</small>
             </a>
           </h4>
         </li>

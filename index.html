@@ -11,14 +11,14 @@ title: "主页"
   {% assign currentdate = post.date | date: "%Y" %}
   {% if currentdate != date %}
     {% unless forloop.first %}</ul>{% endunless %}
-    <h2 id="y{{post.date | date: "%Y"}}" class="page-title">{{ currentdate }}</h2>
+    <h2 id="y{{post.date | date: "%Y"}}" class="page-title">{{currentdate}}</h2>
     <ul class="related-posts">
     {% assign date = currentdate %}
   {% endif %}
   <li>
     <h4>
-      <a href="{{ site.baseurl }}{{ post.url }}"><span>{{ post.title }}</span></a>
-      <span class="refinfo">{{ post.date | date: "%m/%d" }}</span>
+      <a href="{{site.baseurl}}{{post.url}}"><span>{{post.title}}</span></a>
+      <span class="refinfo">{{post.date | date: "%m/%d"}}</span>
     </h4>
   </li>
   {% if forloop.last %}</ul>{% endif %}
@@ -34,29 +34,29 @@ title: "主页"
   {% for post in paginator.posts %}
   <div class="post">
     <h1 class="post-title">
-      <a href="{{ post.url }}">
-        {{ post.title }}
+      <a href="{{post.url}}">
+        {{post.title}}
       </a>
     </h1>
 
-    <span class="post-date">{{ post.date | date_to_string }}</span>
+    <span class="post-date">{{post.date | date_to_string}}</span>
 
-    {{ post.content }}
+    {{post.content}}
   </div>
   {% endfor %}
 </div>
 
 <div class="pagination">
   {% if paginator.next_page %}
-    <a class="pagination-item older" href="{{ site.baseurl }}page{{paginator.next_page}}">之前的</a>
+    <a class="pagination-item older" href="{{site.baseurl}}page{{paginator.next_page}}">之前的</a>
   {% else %}
     <span class="pagination-item older">之前的</span>
   {% endif %}
   {% if paginator.previous_page %}
     {% if paginator.page == 2 %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}">最近的</a>
+      <a class="pagination-item newer" href="{{site.baseurl}}">最近的</a>
     {% else %}
-      <a class="pagination-item newer" href="{{ site.baseurl }}page{{paginator.previous_page}}">最近的</a>
+      <a class="pagination-item newer" href="{{site.baseurl}}page{{paginator.previous_page}}">最近的</a>
     {% endif %}
   {% else %}
     <span class="pagination-item newer">最近的文章</span>
