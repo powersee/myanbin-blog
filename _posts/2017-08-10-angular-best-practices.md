@@ -4,7 +4,8 @@ title: 'Angular 最佳实践'
 tags: [code]
 ---
 
-从去年十月份开始接触 Angular 到现在，已经有大半年的时间了，其版本也从 Angular 2 跃升为 Angular 4。
+
+从去年十月份开始接触 Angular 到现在，已经有大半年的时间了，见证了其版本也从 Angular 2 跃升为 Angular 4。
 
 与 React、Vue 相比，Angular 框架更加严谨而全面，这使得它非常适合构建大型 Web App。然而也是因为这一点，使其学习曲线陡峭，让很多初学者望而止步。
 
@@ -28,7 +29,16 @@ Angular 中最重要的三个概念是：模块、服务和组件：
 
 ## 二、目录结构
 
-Angular 官方提供一个 CLI 工具来生成、运行、测试和打包 Angular 项目。
+Angular 官方提供一个 CLI 工具来生成、运行、测试和打包 Angular 项目。下面是一个经过实践的 Angular 项目的目录和文件结构组织方式：
+
+```
+```
+
+需要在项目中创建模块、服务或组件时，推荐使用 `ng generate` 命令。比如要创建一个 HeroDetailComponent，则可以在命令行中输入：
+
+```sh
+ng generate component hero-detail
+```
 
 ## 三、路由及异步路由
 
@@ -37,14 +47,14 @@ Angular 官方提供一个 CLI 工具来生成、运行、测试和打包 Angula
 ```ts
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'hero', loadChildren: './heroes/heroes.module#HeroesModule', canLoad: [AuthorizationGuard] },
+  { path: 'hero', loadChildren: './heroes/heroes.module#HeroesModule' },
   { path: '**', component: NotFoundComponent },
 ];
 ```
 
 ## 四、测试
 
-Angular 适合使用 Test Driven Develop 的方式进行软件开发。在使用 @angular/cli 创建的组件、服务中，均会有与之同名的 `.spec.ts` 文件，测试代码写在这些文件里即可。比如下面的代码用于测试 Navigate 组件是否显示正确的登录或注销按钮。
+Angular 适合使用 Test Driven Develop 的方式进行软件开发。在使用 @angular/cli 创建的模块、服务和组件中，均会有与之同名的 `.spec.ts` 文件，测试代码写在这些文件里即可。比如下面的代码用于测试 NavigateComponent 是否显示正确的登录或注销按钮。
 
 ```ts
 describe('NavigateComponent', () => {
@@ -67,7 +77,6 @@ describe('NavigateComponent', () => {
 在对有路由模块的组件进行测试时，需要导入 RouterTestingModule：
 
 ```ts
-<!-- app.component.spec.ts -->
 import { RouterTestingModule } from '@angular/router/testing';
 
 TestBed.configureTestingModule({
