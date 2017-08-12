@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '编程中起名的艺术'
+title: '起名的艺术'
 ---
 
 
@@ -17,6 +17,7 @@ title: '编程中起名的艺术'
 
 ![代码质量衡量标准](https://infp.github.io/images/code-quality.jpg){:.center}
 
+-----
 
 **定理 2：好的代码胜过好的注释。**
 
