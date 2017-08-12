@@ -5,7 +5,7 @@ tags: [code]
 ---
 
 
-从去年十月份开始接触 Angular 到现在，已经有大半年的时间了，见证了其版本也从 Angular 2 跃升为 Angular 4。
+从去年十月份开始接触 Angular 到现在，已经有大半年的时间了，同时也见证了 Angular 的快速发展，其版本也从 Angular 2 跃升为 Angular 4。
 
 与 React、Vue 相比，Angular 框架更加严谨而全面，这使得它非常适合构建大型 Web App。然而也是因为这一点，使其学习曲线陡峭，让很多初学者望而止步。
 
@@ -32,6 +32,57 @@ Angular 中最重要的三个概念是：模块、服务和组件：
 Angular 官方提供一个 CLI 工具来生成、运行、测试和打包 Angular 项目。下面是一个经过实践的 Angular 项目的目录和文件结构组织方式：
 
 ```
+src/app
+├── core
+│   ├── authorization
+│   │   ├── authorization-guard.service.spec.ts
+│   │   ├── authorization-guard.service.ts
+│   │   ├── authorization.service.spec.ts
+│   │   └── authorization.service.ts
+│   ├── login
+│   │   ├── login.component.css
+│   │   ├── login.component.html
+│   │   ├── login.component.spec.ts
+│   │   └── login.component.ts
+│   ├── navigate
+│   │   ├── navigate.component.css
+│   │   ├── navigate.component.html
+│   │   ├── navigate.component.spec.ts
+│   │   └── navigate.component.ts
+│   ├── not-found
+│   │   ├── not-found.component.css
+│   │   ├── not-found.component.html
+│   │   ├── not-found.component.spec.ts
+│   │   └── not-found.component.ts
+│   └── core.module.ts
+├── heroes
+│   ├── hero-detail
+│   │   ├── hero-detail.component.css
+│   │   ├── hero-detail.component.html
+│   │   ├── hero-detail.component.spec.ts
+│   │   └── hero-detail.component.ts
+│   ├── hero-list
+│   │   ├── hero-list.component.css
+│   │   ├── hero-list.component.html
+│   │   ├── hero-list.component.spec.ts
+│   │   └── hero-list.component.ts
+│   ├── shared
+│   │   ├── hero.model.ts
+│   │   ├── hero.service.spec.ts
+│   │   └── hero.service.ts
+│   ├── heroes-routing.module.ts
+│   ├── heroes.component.spec.ts
+│   ├── heroes.component.ts
+│   └── heroes.module.ts
+├── shared
+│   └── shared.module.ts
+├── animations.ts
+├── app-routing.module.ts
+├── app.component.css
+├── app.component.html
+├── app.component.spec.ts
+├── app.component.ts
+└── app.module.ts
 ```
 
 需要在项目中创建模块、服务或组件时，推荐使用 `ng generate` 命令。比如要创建一个 HeroDetailComponent，则可以在命令行中输入：
@@ -42,6 +93,23 @@ ng generate component hero-detail
 
 ## 三、路由及异步路由
 
+在 Angular 应用中，用于配置路由信息的文件应该和其所属的模块在一起，通常有 `-routing.module.ts` 后缀。例如下面的 `heroes-routing.module.ts` 用于配置 HeroesModule 的路由信息：
+
+```ts
+import { Routes, RouterModule } from '@angular/router';
+
+const routes: Routes = [
+  { path: '', component: HeroListComponent },
+  { path: ':id', component: HeroDetailComponent },
+];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule],
+})
+export class HeroesRoutingModule { }
+```
+
 当 Angular 应用变大之后，一次性加载所有的特性模块会导致用户访问时需要更长的时间，因此我们希望某些特性模块只在用户请求的时候才进行加载。这时我们需要配置异步路由来实现特性模块的惰性加载。
 
 ```ts
@@ -51,6 +119,8 @@ const routes: Routes = [
   { path: '**', component: NotFoundComponent },
 ];
 ```
+
+有时候，应用需要路由守卫（Guard）来限制非授权用户访问某些目标组件或者在离开组件时询问是否保存修改。
 
 ## 四、测试
 
