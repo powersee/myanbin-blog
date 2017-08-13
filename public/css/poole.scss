@@ -35,7 +35,7 @@ body {
 }
 
 html {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", "Open Sans", Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.6;
 }
@@ -152,7 +152,7 @@ kbd {
   border-radius: 4px;
   background: #f5f3f1;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: "Helvetica Neue", "Open Sans", sans-serif;
   font-size: .8rem;
   text-shadow: 0 0 1px rgba(0, 0, 0, 0.1);
 }
@@ -160,7 +160,7 @@ kbd {
 /* Code */
 code,
 pre {
-  font-family: Menlo, Monaco, "Source Code Pro", Consolas, "Microsoft Yahei", monospace;
+  font-family: "Source Code Pro", Menlo, Consolas, "Microsoft Yahei", monospace;
 }
 code {
   padding: .18em;
