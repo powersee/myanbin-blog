@@ -46,11 +46,20 @@ userCount += 1;
 
 起名的首要原则是把信息装到名字中。代码中的名字，便是你和其他读代码的人之间的桥梁，准确的名字，才能传递准确的信息。
 
-**避免使用抽象的名字。**比如不要使用 `tmp` 或 `getData` 这样空洞抽象的名字。
+**避免使用抽象的名字。**例如不要使用 `tmp` 或 `getData` 这样空洞抽象的名字。
 
-**可以在名字中增加额外的信息。**比如 `string hex_id`、`size_kb` 等。在给布尔类型命名时，加上 `is`、`has`、`can`、`should` 让含义更清晰，比如 `bool use_ssl = true` 好于 `bool disable_ssl = false`。
+**可以在名字中增加额外的信息。**例如 `string hex_id`、`size_kb` 等。在给布尔类型命名时，加上 `is`、`has`、`can`、`should` 让含义更清晰，比如 `bool use_ssl = true` 好于 `bool disable_ssl = false`。
 
-**使用不会被误解的名字。**比如用 `first` 和 `last` 来表示包含的范围（闭区间），用 `begin` 和 `end` 来表示排除的范围（开区间）：
+**有目的地使用大小写、下划线进行命名。**例如用 `CamelCase` 表示类名，用 `lower_separated` 表示变量名，用 `CONSTANT_NAME` 表示常量名。在使用 jQuery 的代码中，一个非常有用的规范是，给 jQuery 返回的结果加上 `$` 作为前缀：
+
+```js
+var $all_images = $('img');   // $all_images is a jQuery object
+var height = 250;             // height is not
+```
+
+**为作用域大的名字采用更长的名字。**同理，可以在小的作用域里使用短的名字。
+
+**使用不会被误解的名字。**例如用 `first` 和 `last` 来表示包含的范围（闭区间），用 `begin` 和 `end` 来表示排除的范围（开区间）：
 
 ```java
 print integer_range(start=2, stop=4)
