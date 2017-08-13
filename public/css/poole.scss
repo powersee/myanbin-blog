@@ -362,7 +362,8 @@ tbody tr:nth-child(odd) th {
   font-size: .9rem;
 }
 
-.post hr {
+.post hr:not(.post-divide) {
+  margin: 2rem 0;
   border: 0; 
   height: 1px; 
   text-align: center;
@@ -370,7 +371,7 @@ tbody tr:nth-child(odd) th {
   background-image: -moz-linear-gradient(to left, #fff, #fff, #fff, #8c8b8b, #fff, #fff, #fff);
   background-image: linear-gradient(to left, #fff, #fff,  #fff, #8c8b8b, #fff, #fff, #fff);
 }
-.post hr::after {
+.post hr:not(.post-divide)::after {
   content: '§';
 	display: inline-block;
 	position: relative;
@@ -383,14 +384,6 @@ tbody tr:nth-child(odd) th {
 	        transform: rotate(60deg);
 }
 
-.post hr.post-separator {
-  border: 0;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #fff;
-}
-.post hr.post-separator::after {
-  display: none;
-}
 
 /* Heading 2 style in post */
 h2::before {
