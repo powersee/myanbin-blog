@@ -76,10 +76,10 @@ this.addEventListener('fetch', function (event) {
  */
 this.addEventListener('activate', function(event) {
   event.waitUntil(
-    caches.keys().then(function (keyList) {
-      return Promise.all(keyList.map(function (key) {
-        if (CACHE_VERSION !== key) {
-          return caches.delete(key);
+    caches.keys().then(function (cacheNames) {
+      return Promise.all(cacheNames.map(function (cacheName) {
+        if (CACHE_VERSION !== cacheName) {
+          return caches.delete(cacheName);
         }
       }));
     })

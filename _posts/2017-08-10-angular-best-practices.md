@@ -5,9 +5,7 @@ tags: [code]
 ---
 
 
-从去年十月份开始接触 Angular 到现在，已经有大半年的时间了，同时也见证了 Angular 的快速发展，其版本也从 Angular 2 跃升为 Angular 4。
-
-与 React、Vue 相比，Angular 框架更加严谨而全面，这使得它非常适合构建大型 Web App。然而也是因为这一点，使其学习曲线陡峭，让很多初学者望而止步。
+从去年十月份开始接触 Angular 到现在，已经有大半年的时间了，同时也见证了 Angular 的快速发展，其版本也从 Angular 2 跃升为 Angular 4。与 React、Vue 相比，Angular 框架更加严谨而全面，这使得它非常适合构建大型 Web App。然而也是因为这一点，使其学习曲线陡峭，让很多初学者望而止步。
 
 本文将以官网的 Heroes 为背景，介绍在创建一个 Angular 应用中所使用的一些最佳实践。
 
@@ -20,7 +18,28 @@ Angular 中最重要的三个概念是：模块、服务和组件：
 * 服务：用于添加应用逻辑
 * 组件：用于管理 HTML 模板
 
-模块是一个带有 `@NgModule` 装饰器的类，每一个 Angular 应用都有一个根模块（AppModule），根据应用规模，可能还有核心模块（CoreModule）、共享模块（SharedModule）和一些特性模块（Feature Module）。
+模块是一个带有 `@NgModule` 装饰器的类。每一个 Angular 应用都有一个根模块（AppModule），根据应用规模，可能还有核心模块（CoreModule）、共享模块（SharedModule）和一些特性模块（Feature Module）。
+
+```ts
+// import modules, components, services here
+
+@NgModule({
+  imports: [CommonModule, RouterModule, FormsModule],
+  exports: [NavigateComponent],
+  providers: [AuthorizationService, AuthorizationGuard],
+  declarations: [NavigateComponent, LoginComponent, NotFoundComponent]
+})
+export class CoreModule { }
+```
+
+上面的代码表示核心模块 CoreModule 需要：
+
+* 导入 Angular 的路由模块、表单模块
+* 导出了内部的 NavigateComponent 组件
+* 提供 AuthorizationService 服务
+* 声明 NavigateComponent、LoginComponent 等组件属于该模块
+
+CoreModule 只能在应用启动时被 AppModule 一次性导入，所以它所提供的服务都是单例的。
 
 服务是指用来封装按特性划分的可复用变量和函数的一个类，例如日志服务、数据服务、应用程序配置服务等。
 
