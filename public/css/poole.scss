@@ -389,9 +389,12 @@ tbody tr:nth-child(odd) th {
 }
 
 
-/* Heading 2 style in post */
-h2::before {
-  content: '';
+.post img[alt]::after {
+  content: attr(alt);
+  display: block;
+  text-align: center;
+  font-size: .9rem;
+  color: #8c8b8b;
 }
 
 /* Content that align center, for example img */
