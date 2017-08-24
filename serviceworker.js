@@ -95,3 +95,8 @@ let shouldAlwaysFetch = function (request) {
 let offlineResponse = function (request) {
   return caches.match('/offline.html');
 };
+
+
+/**
+ * Update Date: Thu, 24 Aug 2017 16:45:10 GMT
+ */
