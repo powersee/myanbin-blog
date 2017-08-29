@@ -126,6 +126,10 @@ html {
   pointer-events: all;
 }
 
+.drawer-open > main.container {
+  filter: blur(2px);
+}
+
 #_menu {
   display: block;
   position: absolute;

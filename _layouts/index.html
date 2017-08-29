@@ -1,0 +1,22 @@
+---
+layout: default
+---
+
+<p class="lead" id="banner">有朋自远方来，不亦乐乎。</p>
+
+{% for post in site.posts %}
+  {% assign currentdate = post.date | date: "%Y" %}
+  {% if currentdate != date %}
+    {% unless forloop.first %}</ul>{% endunless %}
+    <h2 id="y{{post.date | date: "%Y"}}" class="page-title">{{currentdate}}</h2>
+    <ul class="related-posts">
+    {% assign date = currentdate %}
+  {% endif %}
+  <li>
+    <h4>
+      <a href="{{site.baseurl}}{{post.url}}"><span>{{post.title}}</span></a>
+      <span class="refinfo">{{post.date | date: "%m/%d"}}</span>
+    </h4>
+  </li>
+  {% if forloop.last %}</ul>{% endif %}
+{% endfor %}
