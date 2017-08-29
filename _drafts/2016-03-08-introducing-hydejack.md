@@ -63,7 +63,7 @@ In the manifest of a blog post, simply add an url as `image` and a CSS color as 
 ---
 layout: post
 title: Introducing Hydejack
-image: http://qwtel.com/hydejack/public/img/hyde.jpg
+image: http://qwtel.com/hydejack/public/images/hyde.jpg
 color: '#949667'
 ---
 ~~~

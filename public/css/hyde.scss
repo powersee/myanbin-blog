@@ -410,7 +410,7 @@ html {
     border-top: 1px solid;
     border-bottom: 1px solid;
   }
-  .content p {
+  .content p:not(.lead) {
     text-indent: 2em;
     margin-bottom: 0.6em;
   }

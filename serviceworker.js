@@ -6,7 +6,11 @@
  */
 
 
-const CACHE_VERSION = 'v3';
+
+/**
+ * Update Date: Tue, 29 Aug 2017 13:27:15 GMT
+ */
+const CACHE_VERSION = 'v4';
 const CACHE_FILES = [
   '/',
   '/index.html',
@@ -15,11 +19,11 @@ const CACHE_FILES = [
   '/offline.html',
   '/public/css/styles.css',
   '/public/fonts/icomoon.ttf',
-  '/public/img/cat.jpg',
-  '/public/img/redflag.jpg',
-  '/public/img/sierra.jpg',
-  '/public/img/skyline.jpg',
-  '/public/img/buckow.jpg',
+  '/public/images/cat.jpg',
+  '/public/images/redflag.jpg',
+  '/public/images/sierra.jpg',
+  '/public/images/skyline.jpg',
+  '/public/images/buckow.jpg',
   '/public/js/drawer.min.js'
 ];
 const IGNORE_LISTS = [
@@ -95,8 +99,3 @@ let shouldAlwaysFetch = function (request) {
 let offlineResponse = function (request) {
   return caches.match('/offline.html');
 };
-
-
-/**
- * Update Date: Thu, 24 Aug 2017 16:45:10 GMT
- */

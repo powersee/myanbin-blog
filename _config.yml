@@ -19,7 +19,7 @@ description:      >
 analytics:        'UA-32028925-2'
 
 # Fallback image and color if not overwritten for tag or post
-image:            /public/img/sierra.jpg
+image:            /public/images/sierra.jpg
 color:            '#2196f3'
 
 author:
@@ -29,7 +29,7 @@ author:
   linkedin:       myanbin
   weibo:          yianbin
   facebook:       myanbin
-  photo:          /public/img/cat.jpg
+  photo:          /public/images/cat.jpg
 
 
   # Markdown enabled, can use multiple paragraphs (enabled by `|`)
