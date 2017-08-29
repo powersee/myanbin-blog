@@ -41,4 +41,4 @@ order: 6
 
 ## 联系我
 
-欢迎关注我的微博 [@孺子牛骑士](https://weibo.com/yianbin)，或发邮件到 [ma.yanbin@qq.com](mailto:ma.yanbin@qq.com) 与我联系。你也可以通过页面左下角的链接给我留言。
+欢迎关注我的微博 [@孺子牛骑士](https://weibo.com/yianbin)，或发邮件到 [{{site.author.email}}](mailto:{{site.author.email}}) 与我联系。你也可以通过页面左下角的链接给我留言。
