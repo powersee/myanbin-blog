@@ -236,6 +236,7 @@ html {
 /* Enable z-index (derived from DOM structure) for the sidbar content. */
 .container {
   position: relative;
+  filter: blur(0);
 }
 
 /* Sticky sidebar
