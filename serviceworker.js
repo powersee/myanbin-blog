@@ -8,9 +8,9 @@
 
 
 /**
- * Update Date: Tue, 29 Aug 2017 14:27:15 GMT
+ * Update Date: Tue, 18 Sep 2017 17:27:15 GMT
  */
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const CACHE_FILES = [
   '/',
   '/index.html',
