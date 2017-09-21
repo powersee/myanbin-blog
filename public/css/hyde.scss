@@ -30,10 +30,6 @@
  * Update the foundational and global aspects of the page.
  */
 
-html {
-  /*font-family: "PT Serif", Georgia, serif;*/
-  font-family: "Helvetica Neue", "Open Sans", "PingFang SC", 'Microsoft Yahei', sans-serif;
-}
 @media (min-width: 48em) {
   html {
     font-size: 16px;
@@ -173,7 +169,6 @@ html {
 
 /* About section */
 .sidebar-about > h1 {
-  /*font-family: "PT Serif", Georgia, serif;*/
   color: #fff;
   margin-top: 0;
   font-size: 2rem;
@@ -188,7 +183,6 @@ html {
   margin-bottom: 1.25rem;
 }
 .sidebar-nav-item {
-  /*font-family: "PT Serif", Georgia, serif;*/
   font-weight: bold;
   display: block;
   line-height: 1.75;

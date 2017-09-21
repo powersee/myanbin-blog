@@ -34,18 +34,10 @@ body {
   padding: 0;
 }
 
-html {
+body {
   font-family: "Helvetica Neue", "Open Sans", "PingFang SC", 'Microsoft Yahei', sans-serif;
   font-size: 16px;
   line-height: 1.6;
-}
-@media (min-width: 38em) {
-  html {
-    font-size: 16px;
-  }
-}
-
-body {
   color: #000;
   background-color: #fff;
   -webkit-text-size-adjust: 100%;
@@ -272,6 +264,12 @@ tbody tr:nth-child(odd) th {
   font-weight: normal;
 }
 
+/* Content that align center, for example img */
+.center {
+  display: block;
+  margin: auto;
+}
+
 
 /*
  * Messages
@@ -298,9 +296,9 @@ tbody tr:nth-child(odd) th {
 
 .container {
   max-width: 38rem;
-  padding-left:  1rem;
+  padding-left: 1rem;
   padding-right: 1rem;
-  margin-left:  auto;
+  margin-left: auto;
   margin-right: auto;
 }
 
@@ -317,7 +315,7 @@ tbody tr:nth-child(odd) th {
  */
 
 .masthead {
-  padding-top:    1rem;
+  padding-top: 1rem;
   padding-bottom: 1rem;
   margin-bottom: 3rem;
 }
@@ -400,14 +398,35 @@ tbody tr:nth-child(odd) th {
   color: #8c8b8b;
 }
 
-/* Content that align center, for example img */
-.center {
+
+/* Footnotes */
+.footnote::before {
+  content: "[";
+}
+.footnote::after {
+  content: "]";
+}
+.footnotes > ol {
+  padding-left: 1.5rem;
+  font-size: 0.9rem;
+}
+.footnotes::before {
+  content: "";
   display: block;
-  margin: auto;
+  margin: 1.5rem 0;
+  border: 0;
+  border-top: 1px solid #000;
+  width: 20%;
 }
 
 
 
+
+/**
+ * Home Page Styles
+ *
+ * Post List and more
+ */
 
 
 /* Related posts */
@@ -446,7 +465,6 @@ tbody tr:nth-child(odd) th {
 
 /*
  * Dot Leaders
- *
  * https://www.w3.org/Style/Examples/007/leaders.en.html
  */
 
@@ -488,25 +506,3 @@ ul.related-posts a + span {
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #eee;
 }
-
-
-/* Footnotes */
-.footnote::before {
-  content: "[";
-}
-.footnote::after {
-  content: "]";
-}
-.footnotes > ol {
-  padding-left: 1.5rem;
-  font-size: 0.9rem;
-}
-.footnotes::before {
-  content: "";
-  display: block;
-  margin: 1.5rem 0;
-  border: 0;
-  border-top: 1px solid #000;
-  width: 20%;
-}
-
