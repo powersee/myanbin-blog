@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '实时协同编辑以及其相关算法'
+title: '实时协同编辑和 Operational Transformation 算法'
 tags: [code]
 ---
 
@@ -68,7 +68,8 @@ var strBA = operationBPrime.apply('hello, world!')  // 'hi, world!'
 该示例中使用 CodeMirror 作为编辑器，实现了一个可实时协同的 Markdown 编辑器，其代码具有一定的参考价值。启动方法：
 
 ```sh
-git clone https://github.com/Operational-Transformation/ot-demo.git && cd ot-demo
+git clone https://github.com/Operational-Transformation/ot-demo.git
+cd ot-demo
 npm install
 node backends/node/server.js
 ```

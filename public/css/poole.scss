@@ -35,7 +35,7 @@ body {
 }
 
 html {
-  font-family: "Helvetica Neue", "Open Sans", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", "Open Sans", "PingFang SC", 'Microsoft Yahei', sans-serif;
   font-size: 16px;
   line-height: 1.6;
 }
@@ -232,6 +232,9 @@ q:after {
   content: close-quote;
 }
 
+sup, sub {
+  line-height: 0;
+}
 
 img {
   display: block;
@@ -403,6 +406,10 @@ tbody tr:nth-child(odd) th {
   margin: auto;
 }
 
+
+
+
+
 /* Related posts */
 .related {
   padding-top: 2rem;
@@ -415,7 +422,6 @@ tbody tr:nth-child(odd) th {
 }
 .related-posts h4 {
   margin-top: 0;
-  color: #333;
   font-weight: normal;
 }
 .related-posts li small {
@@ -477,17 +483,14 @@ ul.related-posts a + span {
   z-index: 1;
 }
 
-
 .aside-title {
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #eee;
 }
 
+
 /* Footnotes */
-sup {
-  line-height: 0;
-}
 .footnote::before {
   content: "[";
 }
@@ -506,3 +509,4 @@ sup {
   border-top: 1px solid #000;
   width: 20%;
 }
+
