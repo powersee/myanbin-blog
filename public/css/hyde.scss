@@ -147,9 +147,9 @@
     bottom: 0;
     width: 18rem;
     /* Disable drawer positiioning on larger screens (already done via JS, but just to be sure) */
-    -webkit-transform: translate3d(0,0,0)!important;
-    -ms-transform: translate3d(0,0,0)!important;
-    transform: translate3d(0,0,0)!important;
+    -webkit-transform: translate3d(0,0,0) !important;
+    -ms-transform: translate3d(0,0,0) !important;
+    transform: translate3d(0,0,0) !important;
   }
   .sidebar::before {
     background: -moz-linear-gradient(bottom,  rgba(32,32,32,0) 0%, rgba(32,32,32,.5) 100%);
