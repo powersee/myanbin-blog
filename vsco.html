@@ -124,9 +124,9 @@ permalink: vsco.html
   </div>
 </div>
 
-<script src="{{site.baseurl}}/public/js/jquery.min.js"></script> 
-<script src="{{site.baseurl}}/public/js/masonry.pkgd.min.js"></script>
-<script src="{{site.baseurl}}/public/js/imagesloaded.pkgd.min.js"></script> 
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/masonry/4.2.0/masonry.pkgd.min.js"></script>
+<script src="https://cdn.bootcss.com/jquery.imagesloaded/4.1.3/imagesloaded.pkgd.min.js"></script>
 <script src="{{site.baseurl}}/public/js/view.min.js?auto"></script>
 <script>
   var grid = document.querySelector('.grid');
@@ -137,7 +137,7 @@ permalink: vsco.html
     gutter: 10
   });
 
-  imagesLoaded(grid).on( 'progress', function() {
+  imagesLoaded(grid).on('progress', function() {
     msnry.layout();
   });
 </script>

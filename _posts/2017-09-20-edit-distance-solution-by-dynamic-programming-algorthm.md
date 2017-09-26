@@ -17,19 +17,19 @@ tags: [code]
 
 对编辑距离的求解，需要用到动态规划的思想。即通过拆分，将对原问题的求解划分为对一系列相对简单的重叠子问题的求解，然后再合并这些子问题的解去一步步得到原问题的解。
 
-设两个字符串分别为 X=X<sub>1</sub>...X<sub>i</sub>，Y=Y<sub>1</sub>...Y<sub>j</sub>，其编辑距离为 d<sub>i,j</sub>。那么可知：
+设两个字符串分别为 $X = X_1 \cdots X_i$，$Y = Y_1 \cdots Y_j$，其编辑距离为 $d_{i,j}$。那么可知：
 
-1. 若在 d<sub>i,j-1</sub> 个操作内，可以将 X<sub>1</sub>...X<sub>i</sub> 转换为 Y<sub>1</sub>...Y<sub>j-1</sub>，那么必然可以在  d<sub>i,j-1</sub>+1 个操作内将 X<sub>1</sub>...X<sub>i</sub> 转换为 Y<sub>1</sub>...Y<sub>j</sub>。这里的 +1 操作表示将 Y<sub>j</sub> 插入到  Y<sub>1</sub>...Y<sub>j-1</sub> 中；
+1. 若在 $d_{i,j-1}$ 个操作内，可以将 $X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_{j-1}$，那么必然可以在 $d_{i,j-1} + 1$ 个操作内将 $X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$。这里的 $+1$ 操作表示将 $Y_j$ 插入到 $Y_1 \cdots Y_{j-1}$ 中；
 
-2. 若在 d<sub>i-1,j</sub> 个操作内，可以将 X<sub>1</sub>...X<sub>i-1</sub> 转换为 Y<sub>1</sub>...Y<sub>j</sub>，那么必然可以在  1+d<sub>i-1,j</sub> 个操作内将 X<sub>1</sub>...X<sub>i</sub> 转换为 Y<sub>1</sub>...Y<sub>j</sub>。这里的 +1 操作表示把 X<sub>i</sub> 从 X<sub>1</sub>...X<sub>i</sub> 中删除；
+2. 若在 $d_{i-1,j}$ 个操作内，可以将 $X = X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$，那么必然可以在 $d_{i-1,j} + 1$ 个操作内将 $X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$。这里的 $+1$ 操作表示把 $X_i$ 从 $X = X_1 \cdots X_i$ 中删除；
 
-3. 若在 d<sub>i-1,j-1</sub> 个操作内，可以将 X<sub>1</sub>...X<sub>i-1</sub> 转换为 Y<sub>1</sub>...Y<sub>j-1</sub>，那么：
+3. 若在 $d_{i-1,j-1}$ 个操作内，可以将 $X = X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_{j-1}$，那么：
 
-    * 如果 X<sub>i</sub>=Y<sub>j</sub>，则必然可在 d<sub>i-1,j-1</sub> 个操作内将 X<sub>1</sub>...X<sub>i</sub> 转换为 Y<sub>1</sub>...Y<sub>j</sub>
-    * 如果 X<sub>i</sub>≠Y<sub>j</sub>，则必然可在 d<sub>i-1,j-1</sub>+1 个操作内将 X<sub>1</sub>...X<sub>i</sub> 转换为 Y<sub>1</sub>...Y<sub>j</sub>。这里的 +1 操作表示将 X<sub>i</sub> 替换为 Y<sub>j</sub>
+    * 如果 $X_i = Y_j$，则必然可在 $d_{i-1,j-1}$ 个操作内将  $X = X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$
+    * 如果 $X_i \not = Y_j$，则必然可在 $d_{i-1,j-1} + 1$ 个操作内将 $X = X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$。这里的 $+1$ 操作表示将 $X_i$ 替换为 $Y_j$
 
 
-取上面三种情形的最小值，便是字符串 X 和 Y 的最小编辑距离。
+取上面三种情形的最小值，便是字符串 $X$ 和 $Y$ 的最小编辑距离。
 
 在编辑距离计算的过程中，通常采用二维矩阵来存储计算过程中子问题的解。
 
@@ -55,7 +55,7 @@ dp[0][j] = j, dp[i][0] = i
 
 ## 二、代码实现
 
-下面是使用 C++ 实现的求解编辑距离的算法，其时间复杂度是 O(mn)：
+下面是使用 C++ 实现的求解编辑距离的算法，其时间复杂度是 $$O(mn)$$：
 
 ```cpp
 public class Solution {
