@@ -110,7 +110,7 @@ hr {
   position: relative;
   margin: 1.5rem 0;
   border: 0;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #c9c4c4;
   border-bottom: 1px solid #fff;
 }
 
@@ -221,6 +221,7 @@ q:after {
 
 sup, sub {
   line-height: 0;
+  font-size: 0.7rem;
 }
 
 img {
@@ -358,32 +359,17 @@ tbody tr:nth-child(odd) th {
   display: block;
   /*margin-top: -.5rem;*/
   margin-bottom: 1rem;
-  color: #9a9a9a;
+  color: #8c8b8b;
   font-size: .9rem;
 }
 
 .post hr:not(.post-divide) {
-  margin: 2rem 0;
+  margin: 2.2rem auto;
   border: 0; 
   height: 1px; 
-  text-align: center;
-  background-image: -webkit-linear-gradient(to left, #fff, #fff, #fff, #8c8b8b, #fff, #fff, #fff);
-  background-image: -moz-linear-gradient(to left, #fff, #fff, #fff, #8c8b8b, #fff, #fff, #fff);
-  background-image: linear-gradient(to left, #fff, #fff,  #fff, #8c8b8b, #fff, #fff, #fff);
+  width: 20%;
+  background-color: #c9c4c4;
 }
-.post hr:not(.post-divide)::after {
-  content: '§';
-	display: inline-block;
-	position: relative;
-	top: -14px;
-	padding: 0 10px;
-	background: #ffffff;
-	color: #8c8b8b;
-	-webkit-transform: rotate(60deg);
-	   -moz-transform: rotate(60deg);
-	        transform: rotate(60deg);
-}
-
 
 .post img[alt]::after {
   content: attr(alt);
@@ -439,9 +425,13 @@ tbody tr:nth-child(odd) th {
   padding-left: 0;
   list-style: none;
 }
+.related-posts li {
+  box-sizing: border-box;
+}
 .related-posts h4 {
   margin-top: 0;
   font-weight: normal;
+  clear: both;
 }
 .related-posts li small {
   font-size: 75%;

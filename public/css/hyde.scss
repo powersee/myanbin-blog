@@ -30,12 +30,12 @@
  * Update the foundational and global aspects of the page.
  */
 
-@media (min-width: 48em) {
+@media (min-width: 780px) {
   html {
     font-size: 16px;
   }
 }
-@media (min-width: 60em) {
+@media (min-width: 60rem) {
   html {
     font-size: 17px;
   }
@@ -135,7 +135,7 @@
   color: #9a9a9a;
 }
 
-@media (min-width: 48em) {
+@media (min-width: 780px) {
   .drawer > #_menu {
     display: none;
   }
@@ -238,7 +238,7 @@
  * Add the `sidebar-sticky` class to the sidebar's container to affix it the
  * contents to the bottom of the sidebar in tablets and up.
  */
-@media (min-width: 48em) {
+@media (min-width: 780px) {
   .sidebar-sticky {
     position: absolute;
     right:  1rem;
@@ -267,18 +267,18 @@
   // border-left: 0.3rem solid #fff;
 }
 
-@media (min-width: 48em) {
+@media (min-width: 780px) {
   .content {
-    max-width: 46rem;
+    max-width: 48rem;
     margin-left: 20rem;
     margin-right: 2rem;
     border-left: none;
   }
 }
 
-@media (min-width: 60em) {
+@media (min-width: 60rem) {
   .content {
-    max-width: 50rem;
+    max-width: 54rem;
     margin-left: 21rem;
     margin-right: 3rem;
   }
@@ -347,24 +347,7 @@
     z-index: 2;
     float: right;
 }
-@media (min-width: 38rem) {
-  .me {
-    width: 7rem;
-    margin-top: -5.05rem;
-  }
-}
-@media (min-width: 48rem) {
-  .me {
-    width: 6.5rem;
-    margin-top: -4.8rem;
-  }
-}
-@media (min-width: 58rem) {
-  .me {
-    width: 7rem;
-    margin-top: -5.05rem;
-  }
-}
+
 
 /*
  * Print Styles (by Yanbin Ma)
