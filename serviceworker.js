@@ -8,7 +8,7 @@
 
 
 /**
- * Update Date: Fri, 22 Sep 2017 17:27:15 GMT
+ * Update Date: Wed, 27 Sep 2017 10:27:15 GMT
  */
 const CACHE_VERSION = 'v6';
 const CACHE_FILES = [

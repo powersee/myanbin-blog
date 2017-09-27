@@ -29,13 +29,16 @@ tags: [code]
     * 如果 $X_i \not = Y_j$，则必然可在 $d_{i-1,j-1} + 1$ 个操作内将 $X = X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$。这里的 $+1$ 操作表示将 $X_i$ 替换为 $Y_j$
 
 
-取上面三种情形的最小值，便是字符串 $X$ 和 $Y$ 的最小编辑距离。
+取上面三种情形的最小值，便是字符串 $X$ 和 $Y$ 的最小编辑距离：
+
+
+![编辑距离递推公式](https://infp.github.io/images/edit-distance-formulation.png){:.center}
 
 在编辑距离计算的过程中，通常采用二维矩阵来存储计算过程中子问题的解。
 
 ![编辑距离二维矩阵](https://infp.github.io/images/edit-distance.png){:.center}
 
-最后我们可以得到如下递推公式：当 `x[i] == y[j]` 时，有：
+由以上分析，我们可以得知，当 `x[i] == y[j]` 时，有：
 
 ```cpp
 dp[i][j] = min(dp[i][j-1] + 1, dp[i-1][j] + 1, dp[i-1][j-1])
@@ -81,3 +84,8 @@ public class Solution {
     }
 }
 ```
+
+## 三、参考资料
+
+* [Edit distance From Wikipedia](https://en.wikipedia.org/wiki/Edit_distance)
+* [编辑距离算法](http://www.cnblogs.com/sheeva/p/6598449.html)
