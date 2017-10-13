@@ -21,9 +21,9 @@ tags: [code]
 
 1. 若在 $d_{i,j-1}$ 个操作内，可以将 $X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_{j-1}$，那么必然可以在 $d_{i,j-1} + 1$ 个操作内将 $X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$。这里的 $+1$ 操作表示将 $Y_j$ 插入到 $Y_1 \cdots Y_{j-1}$ 中；
 
-2. 若在 $d_{i-1,j}$ 个操作内，可以将 $X = X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$，那么必然可以在 $d_{i-1,j} + 1$ 个操作内将 $X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$。这里的 $+1$ 操作表示把 $X_i$ 从 $X = X_1 \cdots X_i$ 中删除；
+2. 若在 $d_{i-1,j}$ 个操作内，可以将 $X = X_1 \cdots X_{i-1}$ 转换为 $Y_1 \cdots Y_j$，那么必然可以在 $d_{i-1,j} + 1$ 个操作内将 $X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$。这里的 $+1$ 操作表示把 $X_i$ 从 $X = X_1 \cdots X_i$ 中删除；
 
-3. 若在 $d_{i-1,j-1}$ 个操作内，可以将 $X = X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_{j-1}$，那么：
+3. 若在 $d_{i-1,j-1}$ 个操作内，可以将 $X = X_1 \cdots X_{i-1}$ 转换为 $Y_1 \cdots Y_{j-1}$，那么：
 
     * 如果 $X_i = Y_j$，则必然可在 $d_{i-1,j-1}$ 个操作内将  $X = X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$
     * 如果 $X_i \not = Y_j$，则必然可在 $d_{i-1,j-1} + 1$ 个操作内将 $X = X_1 \cdots X_i$ 转换为 $Y_1 \cdots Y_j$。这里的 $+1$ 操作表示将 $X_i$ 替换为 $Y_j$

@@ -19,9 +19,9 @@ layout: default
 <article class="post">
   <h1 class="post-title">{{page.title}}</h1>
   <div class="post-date">
-    <span><span class="icon icon-calendar"></span> Post on <time datetime="{{page.date | date_to_xmlschema}}">{{page.date | date: '%B %d, %Y'}}</time> &middot;</span>
-    <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> views &middot;</span>
-    <span>Edit it on <a href="https://github.com/myanbin/myanbin.github.io/edit/master/{{page.path}}">Github</a></span>
+    <span><span class="icon icon-calendar"></span> 发表于 <time datetime="{{page.date | date_to_xmlschema}}">{{page.date | date: '%m/%d/%Y'}}</time> &middot;</span>
+    <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> 阅读量 &middot;</span>
+    <span><a href="https://github.com/myanbin/myanbin.github.io/edit/master/{{page.path}}">报告错误</a></span>
   </div>
   <hr class="post-divide">
   {{content}}
@@ -38,29 +38,3 @@ layout: default
   {{site.author.about | markdownify}}
 </aside>
 {% endif %}
-
-<!--
-<aside class="related">
-  <h2 class="aside-title">Related Posts</h2>
-  <ul class="related-posts">
-    {% assign plusone = false %}
-    {% assign tag_name = page.tags[0] %}
-    {% for post in site.tags[tag_name] limit:4 %}
-      {% if post.url == page.url %}
-        {% assign plusone = true %}
-        {% continue %}
-      {% endif %}
-      {% if forloop.index < 4 or plusone == true %}
-        <li>
-          <h4>
-            <a href="post.url | prepend:site.baseurl}}">
-              <span>{{post.title}}</span>
-              <small>{{post.date | date: "%m/%d/%y"}}</small>
-            </a>
-          </h4>
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-</aside>
--->
