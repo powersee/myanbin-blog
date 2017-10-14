@@ -2,23 +2,23 @@
 layout: default
 ---
 
-<p class="lead">
-  有朋自远方来。
-</p>
+<article class="index">
+  <h1 class="page-title">所有文章</h1>
 
-{% for post in site.posts %}
-  {% assign currentdate = post.date | date: "%Y" %}
-  {% if currentdate != date %}
-    {% unless forloop.first %}</ul>{% endunless %}
-    <h2 id="y{{post.date | date: "%Y"}}" class="page-title">{{currentdate}}</h2>
-    <ul class="related-posts">
-    {% assign date = currentdate %}
-  {% endif %}
-  <li>
-    <h4>
-      <a href="{{site.baseurl}}{{post.url}}"><span>{{post.title}}</span></a>
-      <span class="refinfo">{{post.date | date: "%m/%d"}}</span>
-    </h4>
-  </li>
-  {% if forloop.last %}</ul>{% endif %}
-{% endfor %}
+  {% for post in site.posts %}
+    {% assign currentdate = post.date | date: "%Y" %}
+    {% if currentdate != date %}
+      {% unless forloop.first %}</ul>{% endunless %}
+      <h2 id="y{{post.date | date: "%Y"}}" class="page-title">{{currentdate}}</h2>
+      <ul class="related-posts">
+      {% assign date = currentdate %}
+    {% endif %}
+    <li>
+      <h4>
+        <a href="{{site.baseurl}}{{post.url}}"><span>{{post.title}}</span></a>
+        <span class="refinfo">{{post.date | date: "%m/%d"}}</span>
+      </h4>
+    </li>
+    {% if forloop.last %}</ul>{% endif %}
+  {% endfor %}
+</article>
