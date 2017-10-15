@@ -176,7 +176,11 @@
 .sidebar-about a:hover {
   text-decoration: none;
 }
-
+.sidebar-about img {
+  height: 50px;
+  width: auto;
+  margin-left: -5px; /* 使標題與其他元素視覺上左對齊 */
+}
 
 /* Sidebar nav */
 .sidebar-nav {
