@@ -371,7 +371,17 @@ tbody tr:nth-child(odd) th {
   border: 0; 
   height: 1px; 
   width: 20%;
+  text-align: center;
   background-color: #eee;
+}
+
+.post hr:not(.post-divide)::before {
+  content: '* * *';
+  display: inline-block;
+  background-color: #fff;
+  padding: 0 5px;
+  position: relative;
+  top: -9px;
 }
 
 .post img[alt]::after {
