@@ -32,11 +32,11 @@ tags: [code]
 取上面三种情形的最小值，便是字符串 $X$ 和 $Y$ 的最小编辑距离：
 
 
-![编辑距离递推公式](https://infp.github.io/images/edit-distance-formulation.png){:.center}
+![编辑距离递推公式]({{site.img_url}}/edit-distance-formulation.png){:.center}
 
 在编辑距离计算的过程中，通常采用二维矩阵来存储计算过程中子问题的解。
 
-![编辑距离二维矩阵](https://infp.github.io/images/edit-distance.png){:.center}
+![编辑距离二维矩阵]({{site.img_url}}/edit-distance.png){:.center}
 
 由以上分析，我们可以得知，当 `x[i] == y[j]` 时，有：
 

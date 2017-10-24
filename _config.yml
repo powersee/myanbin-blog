@@ -3,9 +3,9 @@ permalink:        /post/:title.html
 
 # Setup
 url:              //myanbin.github.io
-ssl_url:          myanbin.github.io
+img_url:          //infp.github.io/images
 
-# Set to '' in case of hosting on `http://<your-github-name>.github.io`
+# Set to '' in case of hosting on `https://<your-github-name>.github.io`
 baseurl:          ''
 
 title:            '饮冰先生'
