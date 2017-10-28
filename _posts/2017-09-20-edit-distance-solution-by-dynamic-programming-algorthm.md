@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '用动态规划算法解决关于编辑距离的问题'
+title: '用动态规划算法求解编辑距离'
 tags: [code]
 ---
 
