@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '实时协同编辑和 Operational Transformation 算法'
+title: '实时协同编辑和 OT 算法'
 tags: [code]
 ---
 
