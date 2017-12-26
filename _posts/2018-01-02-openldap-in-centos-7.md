@@ -7,14 +7,14 @@ tags: [code]
 
 最近自主研发团队计划搭建一套基于 LDAP 统一认证的开发协作平台（包括 GitLab、Sinopia 等）。本文将主要介绍 LDAP 基本概念，在 CentOS 7 环境下 OpenLDAP 的安装步骤及配置，最后会介绍如何通过 phpLDAPadmin 来管理。关于 GitLab 和 Sinopia 的安装和配置，请阅读：
 
-* [基于 LDAP 统一认证的 GitLab 的安装和配置]({% post_url 2017-12-22-installing-gitlab-under-ldap-authentication %})
-* [使用 Sinopia 搭建 npm 私有服务器]({% post_url 2017-12-25-building-npm-server-with-sinopia %})
+* [基于 LDAP 统一认证的 GitLab 的安装和配置]({{site.baseurl}}{% link _posts/2017-11-14-scrapy-installation-and-tutorial.md %})
+* [使用 Sinopia 搭建 npm 私有服务器]()
 
 ## 一、LDAP 基础教程
 
-LDAP 全称 Lightweight Directory Access Protocol（轻量级目录访问协议），是一个提供了被称为目录服务的互联网协议。目录服务是一种特殊的数据库系统，其专门针对读取、浏览和搜索操作进行了特定的优化。目录一般用来包含描述性的，基于属性的信息并支持精细复杂的过滤能力。DNS 协议便是一种最被广泛使用的目录服务。
+LDAP 全称轻量级目录访问协议（英文：Lightweight Directory Access Protocol），是一个提供了被称为目录服务的互联网协议。目录服务是一种特殊的数据库系统，其专门针对读取、浏览和搜索操作进行了特定的优化。目录一般用来包含描述性的，基于属性的信息并支持精细复杂的过滤能力。DNS 协议便是一种最被广泛使用的目录服务。
 
-LDAP 中的信息是是按照树型结构组织，具体的信息存储在称之为条目（entry）的数据结构中。条目可能会具有必须的属性或可选属性，一个条目的属性必须要遵循 `/etc/openldap/schema/` 模式文件中定义的规则（一个条目所遵循的规则包含在该条目的 objectClass 属性中）。每个条目都可以通过一个识别名 dn 来全局的唯一确定。
+LDAP 中的信息是是按照树型结构组织，具体的信息存储在称之为条目 entry 的数据结构中。条目可能会具有必须的属性或可选属性，一个条目的属性必须要遵循 `/etc/openldap/schema/` 模式文件中定义的规则（一个条目所遵循的规则包含在该条目的 objectClass 属性中）。每个条目都可以通过一个识别名 dn 来全局的唯一确定。
 
 ## 二、OpenLDAP 的安装和配置
 
@@ -27,7 +27,7 @@ LDAP 中的信息是是按照树型结构组织，具体的信息存储在称之
 
 首先，需要切换到 root 账号来安装 OpenLDAP 的 Server 及 Client，并启动服务：
 
-```
+```sh
 [xinhua@localhost ~]$ su -
 [root@localhost ~]# yum install -y openldap-servers openldap-clients
 [root@localhost ~]# cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
@@ -38,7 +38,7 @@ LDAP 中的信息是是按照树型结构组织，具体的信息存储在称之
 
 第二步，我们使用 `slappasswd` 命令来生成一个密码，并使用 ldif 文件将其导入到 LDAP 中来配置管理员信息：
 
-```
+```sh
 [root@localhost ~]# slappasswd
 New password: 
 Re-enter new password: 
@@ -68,7 +68,7 @@ modifying entry "olcDatabase={0}config,cn=config"
 第四步，我们来配置自己的 domain name，并导入到 LDAP 中：
 
 
-```
+```sh
 [root@localhost ~]# slappasswd
 New password: 
 Re-enter new password: 

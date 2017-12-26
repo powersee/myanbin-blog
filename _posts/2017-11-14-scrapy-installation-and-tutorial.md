@@ -10,7 +10,7 @@ Scrapy 是一个用 Python 开发的爬虫框架，用于抓取 Web 页面并提
 
 首先，确定你的电脑上已经安装了 Python 3 以及对应的 pip。可以使用下面的命令查看：
 
-```
+```sh
 $ python3 --version
 Python 3.6.3
 $ pip3 --version
@@ -21,7 +21,7 @@ pip 9.0.1 from /usr/local/lib/python3.6/site-packages (python 3.6)
 
 pip 是 Python 的一个包管理工具，类似于 npm，可以在线安装、卸载所有的第三方 Python 模块，并自动处理依赖关系。这里我们使用下面的命令来安装 Scrapy 模块：
 
-```
+```sh
 $ pip3 install scrapy
 ```
 
@@ -29,13 +29,13 @@ $ pip3 install scrapy
 
 首先，我们使用下面的命令来创建并初始化 Scrapy 项目：
 
-```
+```sh
 $ scrapy startproject doubanmovie
 ```
 
 这样便会在当前目录下创建一个 `doubanmovie` 的爬虫项目，其内部结构如下：
 
-```
+```sh
 $ tree
 .
 ├── doubanmovie
@@ -144,7 +144,7 @@ ITEM_PIPELINES = {
 
 运行 `scrapy crawl moviespider` 命令，便会在控制台中输出爬取到的数据。
 
-```
+```sh
 2017-12-25 22:23:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://movie.douban.com/robots.txt> (referer: None)
 2017-12-25 22:23:40 [scrapy.core.engine] DEBUG: Crawled (200) <GET https://movie.douban.com/top250> (referer: None)
 豆瓣排名：1
