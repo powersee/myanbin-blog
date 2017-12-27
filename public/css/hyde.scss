@@ -310,32 +310,33 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon.icon-github:before {
+
+.icon.icon-calendar::before {
+  content: "\e953";
+}
+.icon.icon-github::before {
   content: "\eab0";
 }
-.icon.icon-linkedin:before {
+.icon.icon-linkedin::before {
   content: "\eaca";
 }
-.icon.icon-weibo:before {
+.icon.icon-weibo::before {
   content: "\ea9a";
 }
-.icon.icon-rss:before {
+.icon.icon-rss::before {
   content: "\ea9c";
 }
-.icon.icon-facebook:before {
+.icon.icon-facebook::before {
   content: "\ea91";
 }
-.icon.icon-google-plus:before {
+.icon.icon-google-plus::before {
   content: "\ea8b";
 }
-.icon.icon-instagram:before {
+.icon.icon-instagram::before {
   content: "\ea92";
 }
-.icon.icon-dribbble:before {
+.icon.icon-dribbble::before {
   content: "\eaa7";
-}
-.icon.icon-calendar:before {
-  content: "\e953";
 }
 
 .icon.icon-rss,

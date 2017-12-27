@@ -4,11 +4,10 @@ layout: default
 
 {% assign post = page %}
 {% if post.tags.size > 0 %}
-  {% capture tags_content %}on {% endcapture %}
   {% for post_tag in post.tags %}
     {% assign tag = site.data.tags[post_tag] %}
     {% if tag %}
-      {% capture tags_content_temp %}{{tags_content}}<a href="{{site.baseurl}}/{{post_tag}}/">{{tag.name}}</a>{% if forloop.last == false %}<span>, </span>{% endif %}{% endcapture %}
+      {% capture tags_content_temp %}{{tags_content}}<a href="{{site.baseurl}}/{{post_tag}}/">{{tag.name}}</a>{% if forloop.last == false %}<span>和</span>{% endif %}{% endcapture %}
       {% assign tags_content = tags_content_temp %}
     {% endif %}
   {% endfor %}
@@ -20,7 +19,8 @@ layout: default
   <h1 class="post-title">{{page.title}}</h1>
   <div class="post-date">
     <span><span class="icon icon-calendar"></span> 发表于 <time datetime="{{page.date | date_to_xmlschema}}">{{page.date | date: '%m/%d/%Y'}}</time> &middot;</span>
-    阅读量 <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> &middot;</span>
+    {% if tags_content != '' %}归类于{{tags_content}} &middot;{% endif %}
+    阅读量 <span id="busuanzi_value_page_pv"></span> &middot;
     <span><a href="https://github.com/myanbin/myanbin.github.io/edit/master/{{page.path}}">报告错误</a></span>
   </div>
   <hr class="post-divide">
