@@ -5,11 +5,11 @@ tags: [code]
 ---
 
 
-最近，自主研发团队正在搭建一套基于 LDAP 统一认证的开发协作平台（包括代码托管服务 GitLab、私有 npm 服务器 CNPM 等），以便达到用户统一管理、统一授权的效果。在这期间，我们阅读了和参考了许多优秀的文档和资料，同时也遇到了一些知识瓶颈和技术难题，但最终顺利地完成了该平台搭建。我们认为有必要把这过程中汇总整理的一些文档和笔记分享出来，以使有需要的人参考使用，践行开源之精神。
+最近，自主研发团队正在搭建一套基于 LDAP 统一认证的开发协作平台（包括代码托管服务 GitLab、私有 npm 服务器 CNPM 等），以便达到用户统一管理、统一授权的效果。在这期间，我们阅读了和参考了许多优秀的文档和资料，同时也遇到了一些知识瓶颈和技术难题，但最终顺利地完成了该平台搭建。我们认为有必要把这过程中汇总整理的一些文档和笔记分享出来，以使后来有需要的人参考使用，践行开源之精神。
 
 本文是该系列的第一篇，主要介绍了 LDAP 的基本概念，以及在 CentOS 7 环境下 OpenLDAP 的安装步骤及配置，最后会介绍如何通过 phpLDAPadmin 来管理 LDAP 服务。关于 GitLab 和 CNPM 的安装和配置，请阅读：
 
-* [基于 LDAP 统一认证的 GitLab 的安装和配置]({{site.baseurl}}{% link _posts/2018-01-05-installing-gitlab-with-ldap-authentication.md %})
+* [基于 LDAP 的 GitLab 的安装和配置]({{site.baseurl}}{% link _posts/2018-01-05-installing-gitlab-with-ldap-authentication.md %})
 * [使用 CNPM 搭建 npm 私有服务器]()
 
 ## 一、LDAP 基础教程
@@ -21,7 +21,7 @@ LDAP 中的信息按照目录信息树结构组织，树中的一个节点称之
 一个条目的属性通过 LDAP 元数据模型（Scheme）中的对象类 objectClass 所定义，下面的表格列举了对象类 inetOrgPerson（Internet Organizational Person）中的一些必填属性和可选属性。
 
 | 属性名         | 是否必填   | 描述   |
-|---------------|------------|----------------------------------------|
+|---------------|:----------:|----------------------------------------|
 | `cn`          | 是         | 该条目被人所熟知的通用名（Common Name）   |
 | `sn`          | 是         | 该条目的姓氏   |
 | `o`           | 否         | 该条目所属的组织名（Organization Name）   |
@@ -149,7 +149,7 @@ modifying entry "olcDatabase={2}hdb,cn=config"
 第五步，在上述基础上，我们来创建一个叫做 Xinhua News Agency 的组织，并在其下创建一个 Manager 的组织角色（该角色内的用户具有管理整个 LDAP 的权限）和 People 和 Group 两个组织单元：
 
 ```sh
-[root@localhost ~]# vi basedomain.ldif
+[root@localhost ~]# vim basedomain.ldif
 
 # replace to your own domain name for "dc=***,dc=***" section
 dn: dc=xinhua,dc=org

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '基于 LDAP 统一认证的 GitLab 的安装和配置'
+title: '基于 LDAP 的 GitLab 的安装和配置'
 tags: [code]
 ---
 
@@ -10,4 +10,9 @@ tags: [code]
 
 ## 一、安装 GitLab CE 服务
 
-待续
+
+## 二、配置 LDAP 统一认证
+
+## 三、开启 HTTPS
+
+## 四、开启 GitLab Pages 服务
