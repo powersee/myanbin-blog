@@ -39,7 +39,7 @@ body {
   font-size: 16px;
   line-height: 1.6;
   color: #000;
-  background-color: #fff;
+  background-color: #ffffff;
   -webkit-text-size-adjust: 100%;
       -ms-text-size-adjust: 100%;
 
@@ -110,8 +110,8 @@ hr {
   position: relative;
   margin: 0.5rem 0 1.5rem 0;
   border: 0;
-  border-top: 1px solid #eee;
-  border-bottom: 1px solid #fff;
+  border-top: 1px solid #eeeeee;
+  border-bottom: 1px solid #ffffff;
 }
 
 abbr {
@@ -154,10 +154,11 @@ pre {
   font-family: "Source Code Pro", "Andale Mono", Consolas, "Microsoft Yahei", monospace;
 }
 code {
-  padding: .18em;
+  padding: .18em 0.28em;
   /* Could be mistaken for a link if the user choses a similar link-color, so better no colored inline code. */
   border-radius: 0px;
   font-size: 1rem;
+  background-color: #eeeeee;
 }
 pre {
   display: block;
@@ -395,6 +396,9 @@ tbody tr:nth-child(odd) th {
   padding-left: 1.5rem;
   font-size: 0.9rem;
 }
+.footnotes > ol p {
+  margin-bottom: 0.5rem;
+}
 .footnotes::before {
   content: "";
   display: block;
@@ -408,7 +412,7 @@ tbody tr:nth-child(odd) th {
 .aside-title {
   margin-bottom: 1.5rem;
   padding-bottom: 1.5rem;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #eeeeee;
 }
 
 
@@ -427,7 +431,7 @@ tbody tr:nth-child(odd) th {
 .related {
   padding-top: 2rem;
   padding-bottom: 2rem;
-  /*border-top: 1px solid #eee;*/
+  /*border-top: 1px solid #eeeeee;*/
 }
 .related-posts {
   padding-left: 0;

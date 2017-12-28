@@ -5,16 +5,29 @@ tags: [code]
 ---
 
 
-最近自主研发团队计划搭建一套基于 LDAP 统一认证的开发协作平台（包括代码托管服务 GitLab、私有 npm 服务器 CNPM 等）。本文将主要介绍 LDAP 基本概念，在 CentOS 7 环境下 OpenLDAP 的安装步骤及配置，最后会介绍如何通过 phpLDAPadmin 来管理。关于 GitLab 和 CNPM 的安装和配置，请阅读：
+最近，自主研发团队正在搭建一套基于 LDAP 统一认证的开发协作平台（包括代码托管服务 GitLab、私有 npm 服务器 CNPM 等），以便达到用户统一管理、统一授权的效果。在这期间，我们阅读了和参考了许多优秀的文档和资料，同时也遇到了一些知识瓶颈和技术难题，但最终顺利地完成了该平台搭建。我们认为有必要把这过程中汇总整理的一些文档和笔记分享出来，以使有需要的人参考使用，践行开源之精神。
 
-* [基于 LDAP 统一认证的 GitLab 的安装和配置]({{site.baseurl}}{% link _posts/2017-11-14-scrapy-installation-and-tutorial.md %})
+本文是该系列的第一篇，主要介绍了 LDAP 的基本概念，以及在 CentOS 7 环境下 OpenLDAP 的安装步骤及配置，最后会介绍如何通过 phpLDAPadmin 来管理 LDAP 服务。关于 GitLab 和 CNPM 的安装和配置，请阅读：
+
+* [基于 LDAP 统一认证的 GitLab 的安装和配置]({{site.baseurl}}{% link _posts/2018-01-05-installing-gitlab-with-ldap-authentication.md %})
 * [使用 CNPM 搭建 npm 私有服务器]()
 
 ## 一、LDAP 基础教程
 
 LDAP 全称轻量级目录访问协议（英文：Lightweight Directory Access Protocol），是一个运行在 TCP/IP 上的目录访问协议。目录是一种特殊的数据库系统，其专门针对读取、浏览和搜索操作进行了特定的优化。目录一般用来包含描述性的，基于属性的信息并支持精细复杂的过滤能力。DNS 协议便是一种最被广泛使用的目录服务。
 
-LDAP 中的信息按照目录信息树结构组织，树中的一个节点称之为条目 Entry，条目包含该节点的属性及属性值。一个条目的属性通过 LDAP 模式中的对象类 objectClass 所定义。每个条目都可以通过识别名 dn 来全局的唯一确定，比如下面我们将会使用 dn 为 `uid=ada,ou=People,dc=xinhua,dc=org` 的条目来表示 Xinhua News Agency 组织中一个名字叫做 Ada Catherine 的员工，其中 `uid=ada` 也被称作相对区别名 rdn[^1]。
+LDAP 中的信息按照目录信息树结构组织，树中的一个节点称之为条目 Entry，条目包含了该节点的属性及属性值。条目都可以通过识别名 dn 来全局的唯一确定[^1]，可以类比于关系型数据库中的主键。比如下面我们将会使用 dn 为 `uid=ada,ou=People,dc=xinhua,dc=org` 的条目来表示在组织中一个名字叫做 Ada Catherine 的员工，其中 `uid=ada` 也被称作相对区别名 rdn。
+
+一个条目的属性通过 LDAP 元数据模型（Scheme）中的对象类 objectClass 所定义，下面的表格列举了对象类 inetOrgPerson（Internet Organizational Person）中的一些必填属性和可选属性。
+
+| 属性名         | 是否必填   | 描述   |
+|---------------|------------|----------------------------------------|
+| `cn`          | 是         | 该条目被人所熟知的通用名（Common Name）   |
+| `sn`          | 是         | 该条目的姓氏   |
+| `o`           | 否         | 该条目所属的组织名（Organization Name）   |
+| `mobile`      | 否         | 该条目的手机号码   |
+| `description` | 否         | 该条目的描述信息   |
+
 
 ## 二、OpenLDAP 的安装和配置
 
@@ -171,7 +184,7 @@ adding new entry "ou=Group,dc=xinhua,dc=org"
 
 通过以上的所有步骤，我们就设置好了一个 LDAP 目录树：其中基准 dn `dc=xinhua,dc=org` 是该树的根节点，其下有一个管理域 `cn=Manager,dc=xinhua,dc=org` 和两个组织单元 `ou=People,dc=xinhua,dc=org` 及 `ou=Group,dc=xinhua,dc=org`。
 
-接下来，我们来创建一个叫作 Ada Catherine 的员工来验证上述配置是否生效。
+接下来，我们来创建一个叫作 Ada Catherine 的员工并将其分配到 Secretary 组来验证上述配置是否生效。
 
 ```sh
 [root@localhost ~]# slappasswd
@@ -186,28 +199,29 @@ dn: uid=ada,ou=People,dc=xinhua,dc=org
 objectClass: inetOrgPerson
 objectClass: posixAccount
 objectClass: shadowAccount
-cn: ada
-sn: Ada Catherine
+uid: ada
+cn: Ada Catherine
+sn: Catherine
 userPassword: {SSHA}HTGqAd4p6fOOIVHm7VZYUSorWGfnrqAA
 loginShell: /bin/bash
 uidNumber: 1000
 gidNumber: 1000
 homeDirectory: /home/users/ada
 
-dn: cn=ada,ou=Group,dc=xinhua,dc=org
+dn: cn=Secretary,ou=Group,dc=xinhua,dc=org
 objectClass: posixGroup
-cn: Ada
+cn: Secretary
 gidNumber: 1000
-memberUid: cent
+memberUid: secretary
 
 [root@localhost ~]# ldapadd -x -D cn=Manager,dc=xinhua,dc=org -W -f ldapuser.ldif
 Enter LDAP Password:
 adding new entry "uid=ada,ou=People,dc=xinhua,dc=org"
 
-adding new entry "cn=cent,ou=Group,dc=xinhua,dc=org"
+adding new entry "cn=Secretary,ou=Group,dc=xinhua,dc=org"
 ```
 
-最后，我们可以
+我们也可以使用 `ldapsearch` 命令来查看 LDAP 目录服务中的所有条目信息：
 
 ```sh
 [root@localhost ~]# ldapsearch -x -b "dc=xinhua,dc=org" -H ldap://127.0.0.1
@@ -240,7 +254,7 @@ Enter LDAP Password:
 
 通过 LDIF 文件可以在终端上管理起整个 LDAP，但是我们都喜欢图形化界面。phpLDAPadmin 正是一个可以通过浏览器来管理 LDAP 服务的 Web 工具。
 
-在安装 phpLDAPadmin 之前，要确保服务器上已经启动了 Apache httpd 服务及 PHP[^2]。准备就绪后，我们按下面的操作来安装和配置 phpLDAPadmin：
+在安装 phpLDAPadmin 之前，要确保服务器上已经启动了 Apache httpd 服务及 PHP [^2]。准备就绪后，我们按下面的操作来安装和配置 phpLDAPadmin：
 
 ```sh
 [root@localhost ~]# yum --enablerepo=epel -y install phpldapadmin
@@ -269,6 +283,11 @@ Alias /ldapadmin /usr/share/phpldapadmin/htdocs
 ![phpLDAPadmin 安装成功后的登录界面]({{site.img_url}}/phpldapadmin.png){:.center}
 
 按上面的方式进行登录后，就可以查看、新建、编辑和删除 `dc=xinhua,dc=org` 域下的所有条目了。
+
+## 四、参考资料
+
+* [Configure LDAP Server in CentOS 7](https://www.server-world.info/en/note?os=CentOS_7&p=openldap&f=1)
+* [Install phpLDAPadmin to operate LDAP Server in CentOS 7](https://www.server-world.info/en/note?os=CentOS_7&p=openldap&f=7)
 
 
 [^1]: 每一个 LDAP 条目的区别名 dn 都是由两个部分组成的：相对区别名 rdn 以及该条目在 LDAP 目录中的位置。
