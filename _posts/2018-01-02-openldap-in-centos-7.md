@@ -5,20 +5,20 @@ tags: [code]
 ---
 
 
-最近，自主研发团队正在搭建一套基于 LDAP 统一认证的开发协作平台（包括代码托管服务 GitLab、私有 npm 服务器 CNPM 等），以便达到用户统一管理、统一授权的效果。在这期间，我们阅读和参考了许多优秀的文档和资料，同时也遇到了一些知识瓶颈和技术难题，但最终顺利地完成了该平台搭建，也积累了一些经验。因此我们认为有必要把这些经验整理和汇总成一些文档和笔记分享出来，以使后来有需要的人参考使用，并践行开源自由之精神。
+最近，自主研发团队正在搭建一套基于 LDAP 统一认证的开发协作平台（包括代码托管服务 GitLab、私有 npm 服务器 CNPM 等），以便达到用户统一管理、统一授权的效果。在这期间，我们阅读和参考了许多优秀的文档和资料，同时也遇到了一些知识瓶颈和技术难题，但最终顺利地完成了该平台搭建。因此我们认为有必要把这些经验整理和汇总成一些文档和笔记并分享出来，以使后来有需要的人参考使用，并践行开源自由之精神。
 
 本文是该系列的第一篇，主要介绍了 LDAP 的基本概念，以及在 CentOS 7 环境下 OpenLDAP 的安装步骤及配置，最后会介绍如何通过 phpLDAPadmin 来管理 LDAP 服务。关于 GitLab 和 CNPM 的安装和配置，请阅读：
 
-* [安装、配置和集成基于 LDAP 的 GitLab 服务]({{site.baseurl}}{% link _posts/2018-01-05-installing-gitlab-with-ldap-authentication.md %})
+* [如何搭建一个基于 LDAP 认证的 GitLab 服务]({{site.baseurl}}{% link _posts/2018-01-05-installing-gitlab-with-ldap-authentication.md %})
 * [使用 CNPM 搭建 npm 私有服务器]()
 
 ## 一、LDAP 基础教程
 
 LDAP 全称轻量级目录访问协议（英文：Lightweight Directory Access Protocol），是一个运行在 TCP/IP 上的目录访问协议。目录是一种特殊的数据库系统，其专门针对读取、浏览和搜索操作进行了特定的优化。目录一般用来包含描述性的，基于属性的信息并支持精细复杂的过滤能力。DNS 协议便是一种最被广泛使用的目录服务。
 
-LDAP 中的信息按照目录信息树结构组织，树中的一个节点称之为条目 Entry，条目包含了该节点的属性及属性值。条目都可以通过识别名 dn 来全局的唯一确定[^1]，可以类比于关系型数据库中的主键。比如下面我们将会使用 dn 为 `uid=ada,ou=People,dc=xinhua,dc=org` 的条目来表示在组织中一个名字叫做 Ada Catherine 的员工，其中 `uid=ada` 也被称作相对区别名 rdn。
+LDAP 中的信息按照目录信息树结构组织，树中的一个节点称之为条目（Entry），条目包含了该节点的属性及属性值。条目都可以通过识别名 dn 来全局的唯一确定[^1]，可以类比于关系型数据库中的主键。比如 dn 为 `uid=ada,ou=People,dc=xinhua,dc=org` 的条目表示在组织中一个名字叫做 Ada Catherine 的员工，其中 `uid=ada` 也被称作相对区别名 rdn。
 
-一个条目的属性通过 LDAP 元数据模型（Scheme）中的对象类 objectClass 所定义，下面的表格列举了对象类 inetOrgPerson（Internet Organizational Person）中的一些必填属性和可选属性。
+一个条目的属性通过 LDAP 元数据模型（Scheme）中的对象类（objectClass）所定义，下面的表格列举了对象类 inetOrgPerson（Internet Organizational Person）中的一些必填属性和可选属性。
 
 | 属性名         | 是否必填   | 描述   |
 |---------------|:----------:|----------------------------------------|
@@ -28,6 +28,9 @@ LDAP 中的信息按照目录信息树结构组织，树中的一个节点称之
 | `mobile`      | 否         | 该条目的手机号码   |
 | `description` | 否         | 该条目的描述信息   |
 
+下面是一个典型的 LDAP 目录树结构，其中每个节点表示一个条目。在下一节中，我们将按照这个结构来配置一个简单的 LDAP 服务。
+
+![一个典型的 LDAP 目录树]({{site.img_url}}/ldap-tree.png){:.center}
 
 ## 二、OpenLDAP 的安装和配置
 
@@ -45,8 +48,8 @@ LDAP 中的信息按照目录信息树结构组织，树中的一个节点称之
 [root@localhost ~]# yum install -y openldap-servers openldap-clients
 [root@localhost ~]# cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
 [root@localhost ~]# chown ldap. /var/lib/ldap/DB_CONFIG
-[root@localhost ~]# systemctl start slapd
 [root@localhost ~]# systemctl enable slapd
+[root@localhost ~]# systemctl start slapd
 ```
 
 第二步，我们使用 `slappasswd` 命令来生成一个密码，并使用 LDIF（LDAP 数据交换格式）文件将其导入到 LDAP 中来配置管理员密码：

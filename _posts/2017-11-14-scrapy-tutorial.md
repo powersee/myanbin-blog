@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '爬虫框架 Scrapy 的安装与简单教程'
+title: '爬虫框架 Scrapy 的简单教程：以豆瓣电影为例'
 tags: [code]
 ---
 
