@@ -4,7 +4,7 @@ title: '如何搭建一个基于 LDAP 认证的 GitLab 服务'
 tags: [code]
 ---
 
-本文主要介绍了如何在 CentOS 7 环境下安装 GitLab CE 服务，以及集成 LDAP 统一认证、开启 HTTPS 和 GitLab Pages 等一系列配置。关于前期工作 LDAP 服务的安装和配置，请阅读上篇文章：
+本文主要介绍了如何在 CentOS 7 环境下安装 GitLab CE 服务，以及集成 LDAP 统一认证、开启 HTTPS 和 GitLab Pages 等一系列配置。关于前期工作 LDAP 服务的安装和配置，请阅读上一篇文章：
 
 * [CentOS 7 环境下 OpenLDAP 的安装与配置]({{site.baseurl}}{% link _posts/2018-01-02-openldap-in-centos-7.md %})
 
@@ -104,7 +104,7 @@ gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
 
 GitLab 默认没有开启 HTTPS，如果需要开启的话，需要按照下面的步骤执行：
 
-首先，在配置文件 `/etc/gitlab/gitlab.rb` 中将下面一行中的协议由 HTTP 改成 HTTPS：
+首先，在配置文件 `/etc/gitlab/gitlab.rb` 中将下面一行中的协议由 HTTP 改成 HTTPS，并设置从 HTTP 到 HTTPS 的重定向：
 
 ```rb
 external_url "https://gitlab.example.com"
@@ -121,12 +121,13 @@ nginx['redirect_http_to_https'] = true
 [root@localhost ~]# cp gitlab.xinhua.io.key gitlab.xinhua.iocom.crt /etc/gitlab/ssl/
 ```
 
-注意上面的证书必须以配置中的域名为文件名。
+注意上面的证书必须以配置中的域名（如本文中的 `gitlab.xinhua.io`）为文件名。
 
 最后再执行 `gitlab-ctl reconfigure` 命令，即可通过 HTTPS 方式访问 GitLab 了。
 
 ## 四、开启 GitLab Pages 服务
 
+GitLab Pages 是一个类似于 GitHub Pages 的静态网站托管服务。
 
 ## 五、参考资料
 
