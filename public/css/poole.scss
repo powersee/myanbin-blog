@@ -382,10 +382,12 @@ tbody tr:nth-child(odd) th {
 
 /* Footnotes */
 .footnote::before {
-  content: "[";
+  content: "注";
+  padding: 0 2px;
 }
 .footnote::after {
-  content: "]";
+  content: "";
+  padding-right: 2px;
 }
 .footnotes > ol {
   padding-left: 1.5rem;

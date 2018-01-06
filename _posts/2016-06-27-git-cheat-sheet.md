@@ -12,7 +12,7 @@ tags: [code]
 
 ![Git 工作流]({{site.img_url}}/git-status.png){:.center}
 
-Git 是一个分布式的版本控制系统，是指 Git 的远程仓库（Remote）和本地仓库（Repository）具有同等的地位，保存了代码的所有历史记录。上面的图来自阮一峰的[博客](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)，表示在 Git 的各个状态间相互切换的命令。
+Git 是一个分布式的版本控制系统，是指 Git 的远程仓库（Remote）和本地仓库（Repository）具有同等的地位，保存了代码的所有历史记录。上面的图来自[阮一峰的博客](http://www.ruanyifeng.com/blog/2015/12/git-cheat-sheet.html)，表示在 Git 的各个状态间相互切换的命令。
 
 ## 创建代码仓库
 
@@ -27,6 +27,9 @@ git init
 ~~~sh
 git clone https://github.com/myanbin/jsterm.git
 ~~~
+
+注：如果想要用 Git 来克隆远程仓库的指定分支，可以使用 `-b somebranch` 参数。
+{:.message}
 
 ## 配置 Git
 
@@ -307,7 +310,7 @@ squash a5f4a0d added cat-file
 
 当保存并退出编辑器时，Git 应用所有的三次修改然后并打开文本编辑器等待输入合并信息，输入并保存后，就拥有了一个包含前三次提交的全部变更的提交。
 
-另外一个选择是 `git filter-branch`，通使用它可以改写大量提交。例如，全局修改某位开发者的邮箱地址或从每一个提交中移除某个文件。比如，为了从整个提交历史中移除一个叫做 `passwords.txt` 的文件，可以使用下面命令：
+另外一个选择是 `git filter-branch`，使用它可以改写大量提交。例如，全局修改某位开发者的邮箱地址或从每一个提交中移除某个文件。比如，为了从整个提交历史中移除一个叫做 `passwords.txt` 的文件，可以使用下面命令：
 
 ~~~sh
 git filter-branch --tree-filter 'rm -f passwords.txt' HEAD

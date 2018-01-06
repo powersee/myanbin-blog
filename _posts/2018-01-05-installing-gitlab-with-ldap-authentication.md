@@ -22,7 +22,7 @@ GitLab 有 CE（社区版）和 EE（企业版）两个版本，我们使用的�
 [root@localhost ~]# systemctl start postfix
 ```
 
-由于官方的镜像在国内下载速度较慢，我们使用了清华大学的镜像先把安装包下载到本地，并进行手动安装
+由于官方的镜像在国内下载速度较慢，我们使用了清华大学的镜像先把安装包下载到本地，并进行手动安装：
 
 ```sh
 [root@localhost ~]# wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-10.3.1-ce.0.el7.x86_64.rpm
