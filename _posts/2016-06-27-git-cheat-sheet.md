@@ -28,8 +28,7 @@ git init
 git clone https://github.com/myanbin/jsterm.git
 ~~~
 
-注：如果想要用 Git 来克隆远程仓库的指定分支，可以使用 `-b somebranch` 参数。
-{:.message}
+> 注：如果想要用 Git 来克隆远程仓库的指定分支，可以使用 `-b somebranch` 参数。
 
 ## 配置 Git
 

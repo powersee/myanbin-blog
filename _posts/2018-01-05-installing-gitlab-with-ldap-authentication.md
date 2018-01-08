@@ -121,7 +121,7 @@ nginx['redirect_http_to_https'] = true
 [root@localhost ~]# cp gitlab.xinhua.io.key gitlab.xinhua.iocom.crt /etc/gitlab/ssl/
 ```
 
-注意上面的证书必须以配置中的域名（如本文中的 `gitlab.xinhua.io`）为文件名。
+注意上面的证书必须以配置中的域名（如本文中的 `gitlab.xinhua.io`）为其文件名。
 
 最后再执行 `gitlab-ctl reconfigure` 命令，即可通过 HTTPS 方式访问 GitLab 了。
 
