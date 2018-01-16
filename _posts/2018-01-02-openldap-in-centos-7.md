@@ -89,7 +89,7 @@ SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
 SASL SSF: 0
 adding new entry "cn=nis,cn=schema,cn=config"
 
-[root@localhostlocalhost ~]# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif 
+[root@localhost ~]# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif 
 SASL/EXTERNAL authentication started
 SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
 SASL SSF: 0
@@ -260,6 +260,7 @@ Enter LDAP Password:
 在安装 phpLDAPadmin 之前，要确保服务器上已经启动了 Apache httpd 服务及 PHP [^2]。准备就绪后，我们按下面的操作来安装和配置 phpLDAPadmin：
 
 ```sh
+[root@localhost ~]# yum -y install epel-release
 [root@localhost ~]# yum --enablerepo=epel -y install phpldapadmin
 [root@localhost ~]# vim /etc/phpldapadmin/config.php
 
@@ -274,8 +275,8 @@ Alias /ldapadmin /usr/share/phpldapadmin/htdocs
 <Directory /usr/share/phpldapadmin/htdocs>
   <IfModule mod_authz_core.c>
     # Apache 2.4
-    # line 12: add access permission
     Require local
+    # line 12: add access permission ip range
     Require ip 10.0.0.0/24
 
 [root@localhost ~]# systemctl restart httpd
