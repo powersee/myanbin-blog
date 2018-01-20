@@ -122,9 +122,6 @@
   pointer-events: all;
 }
 
-.drawer-open > main.container {
-  // filter: blur(2px);
-}
 
 #_menu {
   display: block;
@@ -234,7 +231,6 @@
 /* Enable z-index (derived from DOM structure) for the sidbar content. */
 .container {
   position: relative;
-  filter: blur(0);
 }
 
 /* Sticky sidebar
@@ -260,7 +256,7 @@
 .content {
   padding-top:    4rem;
   padding-bottom: 4rem;
-  line-height: 1.7;
+  line-height: 1.8;
   color: #333333;
 
   /*
@@ -276,18 +272,16 @@
 
 @media (min-width: 780px) {
   .content {
-    max-width: 48rem;
     margin-left: 20rem;
-    margin-right: 2rem;
-    border-left: none;
+    margin-right: 4rem;
   }
 }
 
-@media (min-width: 60rem) {
+@media (min-width: 1600px) {
   .content {
-    max-width: 54rem;
-    margin-left: 21rem;
-    margin-right: 3rem;
+    max-width: 56rem;
+    margin-left: 22rem;
+    margin-right: 4rem;
   }
 }
 
