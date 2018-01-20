@@ -272,12 +272,13 @@
 
 @media (min-width: 780px) {
   .content {
+    max-width: 48rem;
     margin-left: 20rem;
     margin-right: 4rem;
   }
 }
 
-@media (min-width: 1600px) {
+@media (min-width: 1500px) {
   .content {
     max-width: 56rem;
     margin-left: 22rem;
