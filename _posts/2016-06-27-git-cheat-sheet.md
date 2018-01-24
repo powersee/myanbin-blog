@@ -119,6 +119,16 @@ git add forgotten_file
 git commit --amend -m "second commit"
 ~~~
 
+如果要撤销工作区中的某个文件，则可以使用 `git reset` 和 `git checkout` 两个命令：
+
+![Git 工作流]({{site.img_url}}/git-basic.png){:.center}
+
+其中：
+
+* `git reset -- files` 会将该文件从暂存区中移除，但是不影响工作目录中的改动
+* `git checkout -- files` 会将该文件从暂存区复制到工作目录，并丢弃工作目录中原来的改动
+
+
 ## 创建和使用分支
 
 Git 鼓励在工作流程中频繁地使用分支和合并，甚至是一天之内进行多次。

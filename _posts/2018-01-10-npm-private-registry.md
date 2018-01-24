@@ -71,5 +71,21 @@ $ npm run start
 
 ## 如何使用 CNPM
 
+为了避免与官方的 npm 冲突，我们需要安装 cnpm 来使用本地的 npm 仓库，并将其源设置为私有 npm 仓库：
+
+```sh
+$ npm intsall -g cnpm
+$ cnpm config set registry https://registry.npm.xinhua.io
+```
+
+假设我们想把一个 JavaScript 模块发布到这个私有 npm 仓库，则可以在该模块目录下使用如下命令：
+
+```sh
+# make sure you have login cnpm
+$ cnpm publish
+```
+
+便将这个模块发布到了我们的私有 npm 上了。
+
 
 [^1]: left-pad 事件是指一个叫做 Azer 的开发者因为 npm 公司把本来他持有的 kik 包名字转移给了 kik 公司，一怒之下 unpublish 了他的所有包。其中一个叫 left-pad 的包，被 babel、react native 等依赖，于是它们就安装失败了，进而所有依赖它们的应用也都会安装和构建失败。
