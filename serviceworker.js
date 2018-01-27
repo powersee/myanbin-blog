@@ -27,7 +27,7 @@ self.toolbox.router.get("/(.*)", self.toolbox.fastest, {
   origin: /(infp\.github\.io)/
 });
 
-self.toolbox.router.get("/(.*)", self.toolbox.fastest, {
+self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
   origin: /(cdn\.bootcss\.com)/
 });
 
