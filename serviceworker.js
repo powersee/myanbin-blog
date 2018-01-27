@@ -23,11 +23,11 @@ self.toolbox.router.get('/public/images/(.*)', self.toolbox.cacheFirst);
 self.toolbox.router.get('/public/js/(.*)', self.toolbox.cacheFirst);
 
 // Cache images and css/js in third website
-self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
+self.toolbox.router.get("/(.*)", self.toolbox.fastest, {
   origin: /(infp\.github\.io)/
 });
 
-self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
+self.toolbox.router.get("/(.*)", self.toolbox.fastest, {
   origin: /(cdn\.bootcss\.com)/
 });
 
