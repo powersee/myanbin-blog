@@ -22,12 +22,16 @@ self.toolbox.router.get('/public/fonts/icomoon.ttf', self.toolbox.cacheFirst);
 self.toolbox.router.get('/public/images/(.*)', self.toolbox.cacheFirst);
 self.toolbox.router.get('/public/js/(.*)', self.toolbox.cacheFirst);
 
+// Cache images and css/js in third website
+self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
+  origin: /(infp\.github\.io)/
+});
 
 self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
   origin: /(cdn\.bootcss\.com)/
 });
 
-
+// Network Only for Analytics Code
 self.toolbox.router.get("/(.*)", self.toolbox.networkOnly, {
   origin: /(www\.google-analytics\.com|ssl\.google-analytics\.com)/
 });
@@ -36,16 +40,15 @@ self.toolbox.router.get("/(.*)", self.toolbox.networkOnly, {
   origin: /(dn-lbstatics\.qbox\.me)/
 });
 
-self.toolbox.router.get('/(.*)', self.toolbox.fastest);
+// For Posts Page
+self.toolbox.router.get('/post/(.*)', self.toolbox.fastest);
 
-toolbox.router.default = function () {
-  new Response('/offline.html');
-}
 
 self.toolbox.precache([
   '/',
   '/index.html',
-  '/offline.html',
+  '/link.html',
+  '/about.html',
   '/public/css/styles.css',
   '/public/images/logo@white.png'
 ]);
