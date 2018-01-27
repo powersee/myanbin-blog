@@ -13,7 +13,7 @@
 
 'use strict';
 
-importScripts('/public/js/sw-toolbox.js');
+importScripts('/public/js/sw-toolbox.min.js');
 
 self.toolbox.options.cache.name = 'static-cache';
 
