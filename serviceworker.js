@@ -21,7 +21,7 @@ self.toolbox.router.get('/public/css/styles.css', self.toolbox.cacheFirst);
 self.toolbox.router.get('/public/fonts/icomoon.ttf', self.toolbox.cacheFirst);
 self.toolbox.router.get('/public/images/(.*)', self.toolbox.cacheFirst);
 self.toolbox.router.get('/public/js/(.*)', self.toolbox.cacheFirst);
-self.toolbox.router.get(/.*html$/, self.toolbox.cacheFirst);
+
 
 self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
   origin: /(cdn\.bootcss\.com)/
@@ -35,3 +35,17 @@ self.toolbox.router.get("/(.*)", self.toolbox.networkOnly, {
 self.toolbox.router.get("/(.*)", self.toolbox.networkOnly, {
   origin: /(dn-lbstatics\.qbox\.me)/
 });
+
+self.toolbox.router.get('/(.*)', self.toolbox.fastest);
+
+toolbox.router.default = function () {
+  new Response('/offline.html');
+}
+
+self.toolbox.precache([
+  '/',
+  '/index.html',
+  '/offline.html',
+  '/public/css/styles.css',
+  '/public/images/logo@white.png'
+]);
