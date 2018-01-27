@@ -17,25 +17,10 @@ layout: compress
 
     <script src="{{site.baseurl}}/public/js/drawer.min.js"></script>
 
-    {% include analytics.html %}
-
-    {% include extrablock.html %}
+    {% include jsblock.html %}
 
     <script>
-    if (navigator.platform.match(/win32/i)) {
-        var cssId = 'webkit-scrollbar';
-        if (!document.getElementById(cssId)) {
-            var head = document.getElementsByTagName('head')[0];
-            var style = document.createElement('style');
-            style.id = cssId;
-            style.innerText = `
-                ::-webkit-scrollbar { width: 6px; height: 6px; background-color: #fff; }
-                ::-webkit-scrollbar-track { background-color: #fff; }
-                ::-webkit-scrollbar-thumb { background-color: #ccc; border: 1px solid #ddd; }
-            `;
-            head.appendChild(style);
-        }
-    }
+
     </script>
 
   </body>

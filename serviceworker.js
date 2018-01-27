@@ -1,103 +1,37 @@
-/**
- * serviceworker.js
- * 
- * Designed, built, and released under MIT license by @myanbin. Learn more at
- * https://github.com/myanbin
- */
+/*
+  Copyright 2016 Google Inc. All Rights Reserved.
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+      http://www.apache.org/licenses/LICENSE-2.0
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+*/
 
+'use strict';
 
-/**
- * Update Date: Sat, 05 Dec 2018 17:27:15 GMT
- */
-const CACHE_VERSION = 'v9';
-const CACHE_FILES = [
-  '/',
-  '/index.html',
-  '/about.html',
-  '/link.html',
-  '/offline.html',
-  '/public/css/styles.css',
-  '/public/fonts/icomoon.ttf',
-  '/public/images/title.png',
-  '/public/images/cat.jpg',
-  '/public/images/palace.jpg',
-  '/public/images/mountains.jpg',
-  '/public/images/redflag.jpg',
-  '/public/images/sierra.jpg',
-  '/public/images/skyline.jpg',
-  '/public/images/buckow.jpg',
-  '/public/js/drawer.min.js'
-];
-const IGNORE_LISTS = [
-  'www.google-analytics.com',
-  'dn-lbstatics.qbox.me'
-];
+importScripts('/public/js/sw-toolbox.js');
 
+self.toolbox.options.cache.name = 'static-cache';
 
-this.addEventListener('install', function (event) {
-  event.waitUntil(
-    caches.open(CACHE_VERSION).then(function (cache) {
-      return cache.addAll(CACHE_FILES);
-    })
-  );
+self.toolbox.router.get('/public/css/styles.css', self.toolbox.cacheFirst);
+self.toolbox.router.get('/public/fonts/icomoon.ttf', self.toolbox.cacheFirst);
+self.toolbox.router.get('/public/images/(.*)', self.toolbox.cacheFirst);
+self.toolbox.router.get('/public/js/(.*)', self.toolbox.cacheFirst);
+self.toolbox.router.get(/html$/, self.toolbox.cacheFirst);
+
+self.toolbox.router.get("/(.*)", self.toolbox.cacheFirst, {
+  origin: /(cdn\.bootcss\.com)/
 });
 
-this.addEventListener('fetch', function (event) {
-  // 在离线状态下跳过对统计代码的 Fetch
-  if (shouldAlwaysFetch(event.request)) {
-    event.respondWith(
-      fetch(event.request).then(function (response) {
-        return response;
-      })
-      .catch(function () {
-        return new Response('');
-      })
-    );
-    return;
-  }
-  event.respondWith(
-    caches.match(event.request).then(function (response) {
-      if (response !== undefined) {
-        return response;
-      }
-      let requestClone = event.request.clone();
-      return fetch(requestClone).then(function (response) {
-        if (response.status !== 200 || response.type !== 'basic') {
-          return response;
-        }
-        let responseClone = response.clone();
-        caches.open(CACHE_VERSION).then(function (cache) {
-          cache.put(event.request, responseClone);
-        });
-        return response;
-      }).catch(function () {
-        return offlineResponse(event.request);
-      });
-    })
-  );
+
+self.toolbox.router.get("/(.*)", self.toolbox.networkOnly, {
+  origin: /(www\.google-analytics\.com|ssl\.google-analytics\.com)/
 });
 
-/**
- * 用于清空旧的 Cache
- */
-this.addEventListener('activate', function(event) {
-  event.waitUntil(
-    caches.keys().then(function (cacheNames) {
-      return Promise.all(cacheNames.map(function (cacheName) {
-        if (CACHE_VERSION !== cacheName) {
-          return caches.delete(cacheName);
-        }
-      }));
-    })
-  );
+self.toolbox.router.get("/(.*)", self.toolbox.networkOnly, {
+  origin: /(dn-lbstatics\.qbox\.me)/
 });
-
-let shouldAlwaysFetch = function (request) {
-  return request.method !== 'GET' || IGNORE_LISTS.some(function (domain) {
-    return request.url.match(domain);
-  })
-};
-
-let offlineResponse = function (request) {
-  return caches.match('/offline.html');
-};

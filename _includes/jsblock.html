@@ -1,0 +1,47 @@
+
+
+<script async>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', '{{site.analytics}}', 'auto');
+	ga('send', 'pageview');
+</script>
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script type="text/x-mathjax-config">
+	MathJax.Hub.Config({
+		tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+		jax: ["input/TeX","output/SVG"]
+	});
+</script>
+<script src="https://cdn.bootcss.com/mathjax/2.7.2/MathJax.js" type="text/javascript" async></script>
+<script src="https://cdn.bootcss.com/mathjax/2.7.2/config/TeX-AMS-MML_SVG.js" type="text/javascript" async></script>
+
+
+<script>
+if (navigator.platform.match(/win32/i)) {
+	var cssId = 'webkit-scrollbar';
+	if (!document.getElementById(cssId)) {
+		var head = document.getElementsByTagName('head')[0];
+		var style = document.createElement('style');
+		style.id = cssId;
+		style.innerText = `
+			::-webkit-scrollbar { width: 6px; height: 6px; background-color: #fff; }
+			::-webkit-scrollbar-track { background-color: #fff; }
+			::-webkit-scrollbar-thumb { background-color: #ccc; border: 1px solid #ddd; }
+		`;
+		head.appendChild(style);
+	}
+}
+
+if ('serviceWorker' in navigator) {
+	navigator.serviceWorker.register('/serviceworker.js').then(function (registration) {
+		console.log('Registration succeeded. Scope is ' + registration.scope);
+	}).catch(function(error) {
+		console.log('Registration failed with ' + error);
+	});
+}
+</script>
