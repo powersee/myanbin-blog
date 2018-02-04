@@ -4,13 +4,13 @@ title: '如何搭建一个基于 LDAP 认证的 GitLab 服务'
 tags: [code]
 ---
 
-本文主要介绍了如何在 CentOS 7 环境下安装 GitLab CE 服务，以及集成 LDAP 统一认证、开启 HTTPS 和 GitLab Pages 等一系列配置。关于前期工作 LDAP 服务的安装和配置，请阅读上一篇文章：
+本文主要介绍了如何在 CentOS 7 环境下安装 GitLab EE 服务，以及集成 LDAP 统一认证、开启 HTTPS 等一系列配置。关于前期工作 LDAP 服务的安装和配置，请阅读上一篇文章：
 
 * [CentOS 7 环境下 OpenLDAP 的安装与配置]({{site.baseurl}}{% link _posts/2018-01-02-openldap-in-centos-7.md %})
 
 ## 一、安装 GitLab CE
 
-GitLab 有 CE（社区版）和 EE（企业版）两个版本，我们使用的是 GitLab CE 10.3.1 的版本，并通过官方推荐的 Omnibus 包的方式进行安装。
+GitLab 有 CE（社区版）和 EE（企业版）两个版本，我们使用的是 GitLab CE 10.3.1 的版本[^]，并通过官方推荐的 Omnibus 包的方式进行安装。
 
 首先，我们需要下载下面这些 GitLab 必需的依赖包：
 
@@ -33,7 +33,7 @@ GitLab 有 CE（社区版）和 EE（企业版）两个版本，我们使用的�
 
 下面，我们开始按需求配置 GitLab。
 
-## 二、配置 LDAP
+## 二、配置 LDAP 基本连接
 
 由于我们在[上一篇]({{site.baseurl}}{% link _posts/2018-01-02-openldap-in-centos-7.md %})中已经安装好了 LDAP 目录服务，所以在这里我们只需要按照下面的方法把相关配置信息添加到 `/etc/gitlab/gitlab.rb` 中即可：
 
@@ -50,7 +50,7 @@ gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
     main: # 'main' is the GitLab 'provider ID' of this LDAP server
       label: 'LDAP'
       host: 'localhost'
-      port: 389
+      port: 389 # usually 636 for SSL
       uid: 'uid' # This should be the attribute, not the value that maps to uid.
       # Examples: 'america\\momo' or 'CN=Gitlab Git,CN=Users,DC=mydomain,DC=com'
       bind_dn: 'cn=Manager,dc=xinhua,dc=org'
@@ -83,10 +83,30 @@ gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
       #   '(&(objectclass=user)(|(samaccountname=momo)(samaccountname=toto)))'
       #
       user_filter: ''
+      # LDAP attributes that GitLab will use to create an account for the LDAP user.
+      # The specified attribute can either be the attribute name as a string (e.g. 'mail'),
+      # or an array of attribute names to try in order (e.g. ['mail', 'email']).
+      # Note that the user's LDAP login will always be the attribute specified as `uid` above.
+      attributes:
+      # The username will be used in paths for the user's own projects
+      # (like `gitlab.example.com/username/project`) and when mentioning
+      # them in issues, merge request and comments (like `@username`).
+      # If the attribute specified for `username` contains an email address,
+      # the GitLab username will be the part of the email address before the '@'.
+        username: ['uid', 'userid', 'sAMAccountName']
+        email:    ['mail', 'email', 'userPrincipalName']
+
+      # If no full name could be found at the attribute specified for `name`,
+      # the full name is determined using the attributes specified for
+      # `first_name` and `last_name`.
+        name:       'cn'
+        first_name: 'givenName'
+        last_name:  'sn'
 #     ## EE only
 #     group_base: ''
 #     admin_group: ''
 #     sync_ssh_keys: false
+EOS
 ```
 
 之后运行下面命令重启 GitLab 服务：
@@ -100,7 +120,11 @@ gitlab_rails['ldap_servers'] = YAML.load <<-'EOS'
 ![成功集成 LDAP 后的 GitLab 的登录界面]({{site.img_url}}/gitlab-login.png){:.center}
 
 
-## 三、开启 HTTPS
+## 三、进一步配置 LDAP
+
+通过第二节，我们在 GitLab 上联通了 LDAP 认证服务，下面，我们将更加具体地配置一些 LDAP 和 LDAP 信息。
+
+## 四、开启 HTTPS
 
 GitLab 默认没有开启 HTTPS，如果需要开启的话，需要按照下面的步骤执行：
 
@@ -125,10 +149,9 @@ nginx['redirect_http_to_https'] = true
 
 最后再执行 `gitlab-ctl reconfigure` 命令，即可通过 HTTPS 方式访问 GitLab 了。
 
-## 四、开启 GitLab Pages 服务
-
-GitLab Pages 是一个类似于 GitHub Pages 的静态网站托管服务。
-
 ## 五、参考资料
 
 * [GitLab Omnibus Package installation on CentOS 7](https://about.gitlab.com/installation/#centos-7)
+
+
+[^1]: GitLab EE 提供了更加丰富的功能，比如 LDAP Group 同步、自定义 Push 规则等，但是需要申请 License 才能使用，所以我们选择了基于 MIT 协议的 GitLab CE。
