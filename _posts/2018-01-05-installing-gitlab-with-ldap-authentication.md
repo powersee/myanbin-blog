@@ -114,7 +114,7 @@ EOS
 * `host` 和 `port` 是 LDAP 服务的主机地址及端口
 * `bind_dn` 和 `password` 是一个管理 LDAP 的 dn 及密码
 * `base` 表示 LDAP 将以该 dn 为 节点，向下查找用户
-* `user_filter` 表示以某种过滤条件筛选用户，比如假设我们只希望所属组为 Developers 的用户来访问 GitLab，则在这里可以设置 `user_filter` 为 `(memberOf=cn=Developers,cn=Groups,dc=xinhua,dc=org)`
+* `user_filter` 表示以某种过滤条件筛选用户，比如假设我们只希望所属组为 Developers 的用户来访问 GitLab，则可以在这里设置 `(memberOf=cn=Developers,cn=Groups,dc=xinhua,dc=org)`
 * `attributes` 表示 GitLab 中的字段与 LDAP 中哪些字段可以相互对应，比如可以用 LDAP 中的 `uid` 来作为 GitLab 用户名
 
 配置修改完成之后，运行下面命令重启 GitLab 服务：
@@ -132,9 +132,11 @@ EOS
 
 通过第二节，我们在 GitLab 上联通了 LDAP 认证服务，下面，我们将根据实际情况，进一步配置 GitLab 和 LDAP。
 
+![进一步配置 GitLab]({{site.img_url}}/gitlab-settings.png){:.center}
+
 首先，为了安全我们需要关闭 GitLab 自己的注册功能，这样新用户只能通过 LDAP 认证的方式进行登陆。同时，需要将默认的管理员 root 修改为较复杂的用户名，以防攻击者暴力破解。
 
-其次，可以将非企业正式员工设置成 External User，以限制其创建私人项目和组。比如在一个企业中，除了全职的正式员工之外，可能还会有项目中存在乙方公司、兼职等临时人员，将这些人设置为 External User 便可限制其使用 GitLab 创建自己的私人项目和组，同时对其提交项目代码不受影响。
+其次，可以将非企业正式员工的用户设置成 External User，以限制其创建私人项目和组。比如在一个企业中，除了全职的正式员工之外，可能还会有项目中存在乙方公司、兼职等临时人员，将这些人设置为 External User 便可限制其使用 GitLab 创建自己的私人项目和组，同时对其提交项目代码不受影响。
 
 ## 四、开启 HTTPS
 
@@ -164,6 +166,7 @@ nginx['redirect_http_to_https'] = true
 ## 五、参考资料
 
 * [GitLab Omnibus Package installation on CentOS 7](https://about.gitlab.com/installation/#centos-7)
+* [GitLab gitlab.yml.example](https://gitlab.com/gitlab-org/gitlab-ce/blob/master/config/gitlab.yml.example)
 
 
 [^1]: GitLab EE 提供了更加丰富的功能，比如 LDAP Group 同步、自定义 Push 规则等，但是需要申请 License 才能使用，所以我们选择了基于 MIT 协议的 GitLab CE。
