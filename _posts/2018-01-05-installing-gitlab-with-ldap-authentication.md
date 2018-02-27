@@ -10,7 +10,7 @@ tags: [code]
 
 ## 一、安装 GitLab CE
 
-GitLab 有 CE（社区版）和 EE（企业版）两个版本，我们使用的是 GitLab CE 10.3.1 的版本[^]，并通过官方推荐的 Omnibus 包的方式进行安装。
+GitLab 有 CE（社区版）和 EE（企业版）两个版本，我们使用的是 GitLab CE 10.3.1 的版本[^1]，并通过官方推荐的 Omnibus 包的方式进行安装。
 
 首先，我们需要下载下面这些 GitLab 必需的依赖包：
 
