@@ -106,18 +106,13 @@ dd {
 }
 
 /* Misc */
-hr {
+hr.post-divide {
   position: relative;
   margin: 0.5rem 0 1.5rem 0;
   border: 0;
+  border-bottom: 1px solid #eeeeee;
 }
-hr::after {
-  content: "\2756";
-  display: block;
-  text-align: center;
-  font-size: 1rem;
-  color: #ddd;
-}
+
 
 abbr {
   text-decoration: none;
@@ -364,12 +359,15 @@ tbody tr:nth-child(odd) th {
 }
 
 .post hr:not(.post-divide) {
-  margin: 2.2rem auto;
-  border: 0; 
-  height: 1px; 
-  width: 20%;
+  margin: 0.5rem 0;
+  border: 0;
+}
+.post hr:not(.post-divide)::after {
+  content: "\2756";
+  display: block;
   text-align: center;
-  background-color: #999;
+  font-size: 1rem;
+  color: #ddd;
 }
 
 .post img[alt]::after {
@@ -409,7 +407,7 @@ tbody tr:nth-child(odd) th {
 
 .aside-title {
   margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
+  padding-bottom: 1rem;
   border-bottom: 1px solid #eeeeee;
 }
 
