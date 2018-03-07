@@ -192,7 +192,7 @@ pre code {
 /* Quotes */
 blockquote {
   padding: .5rem 1rem;
-  margin: .8rem 0;
+  margin: .8rem 1.8rem;
   /*color: #7a7a7a;*/
 }
 blockquote::before {
@@ -201,7 +201,7 @@ blockquote::before {
   content: "“";
   margin-left: -.8em;
   font: italic 400%/1 Cochin, Georgia, "Times New Roman", serif;
-  color: #999;
+  color: #aaa;
 }
 blockquote p:last-child {
   margin-bottom: 0;
