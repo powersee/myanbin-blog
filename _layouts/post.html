@@ -32,7 +32,8 @@ layout: default
   <h2 class="aside-title">关于作者</h2>
 
   {% if site.author.photo %}
-  <img class="me" src="{{site.author.photo}}" alt="{{site.author.name}}"/>
+  <audio src="{{site.baseurl}}/public/audio/cat.mp3" id="cat"></audio>
+  <img class="me" src="{{site.author.photo}}" alt="{{site.author.name}}" onclick="document.getElementById('cat').play()"/>
   {% endif %}
 
   {{site.author.about | markdownify}}
