@@ -361,6 +361,7 @@
 @media print {
   @page {
     margin: 2cm;
+    size: A4;
   }
   html {
     font-family: "PT Serif", Georgia, "STSongti", "STZhongsong", "SimSun", serif;
