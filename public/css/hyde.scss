@@ -25,24 +25,6 @@
 }
 
 /*
- * Global resets
- *
- * Update the foundational and global aspects of the page.
- */
-
-@media (min-width: 780px) {
-  html {
-    font-size: 15px;
-  }
-}
-@media (min-width: 60rem) {
-  html {
-    font-size: 16px;
-  }
-}
-
-
-/*
  * Sidebar
  *
  * Flexible banner for housing site name, intro, and "footer" content. Starts
@@ -55,7 +37,7 @@
   text-align: center;
   padding: 2rem 1rem;
   color: rgba(255,255,255,.75);
-  background-color: #202020!important;
+  background-color: #202020 !important;
   text-align: left;
 
   background-size: cover;
@@ -77,8 +59,8 @@
   position: fixed;
   bottom: 0;
   top: 0;
-  left: -19rem;
-  width: 18rem;
+  left: -21rem;
+  width: 20rem;
   will-change: transform;
   box-shadow: 0.25rem 0 0.3rem rgba(0, 0, 0, 0.15)
 }
@@ -91,9 +73,9 @@
 
 .drawer > .sidebar > .sidebar-sticky {
   position: absolute;
-  right:  1rem;
+  right: 1rem;
   bottom: 1rem;
-  left:   1rem;
+  left: 1rem;
 }
 
 #_backdrop {
@@ -142,7 +124,7 @@
     top: 0;
     left: 0;
     bottom: 0;
-    width: 18rem;
+    width: 20rem;
     /* Disable drawer positiioning on larger screens (already done via JS, but just to be sure) */
     -webkit-transform: translate3d(0,0,0) !important;
     -ms-transform: translate3d(0,0,0) !important;
@@ -273,7 +255,7 @@
 @media (min-width: 780px) {
   .content {
     max-width: 50rem;
-    margin-left: 20rem;
+    margin-left: 22rem;
     margin-right: 4rem;
   }
 }
@@ -281,7 +263,7 @@
 @media (min-width: 1500px) {
   .content {
     max-width: 56rem;
-    margin-left: 22rem;
+    margin-left: 24rem;
     margin-right: 4rem;
   }
 }
