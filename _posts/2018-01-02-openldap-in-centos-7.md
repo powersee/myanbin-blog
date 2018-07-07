@@ -290,7 +290,19 @@ Alias /ldapadmin /usr/share/phpldapadmin/htdocs
 
 按上面的方式进行登录后，就可以查看、新建、编辑和删除 `dc=xinhua,dc=org` 域下的所有条目了。
 
-## 四、参考资料
+
+## 四、使用 Docker 安装 OpenLDAP 和 phpLDAPadmin
+
+使用下面的 Docker 命令，可以快速的安装 OpenLDAP 和 phpLDAPadmin 环境：
+
+```
+[root@localhost ~] docker run --name ldap_core -p 389:389 -p 636:636 --env LDAP_ORGANISATION="XINHUA.ORG" --env LDAP_DOMAIN="xinhua.org" --env LDAP_ADMIN_PASSWORD="Passw0rd" --detach osixia/openldap
+
+[root@localhost ~] docker run --name ldap_web -p 80:80 -p 443:443 --link ldap_core:ldap_core --env PHPLDAPADMIN_LDAP_HOSTS=ldap_core --detach osixia/phpldapadmin
+```
+
+
+## 五、参考资料
 
 * [Configure LDAP Server in CentOS 7](https://www.server-world.info/en/note?os=CentOS_7&p=openldap&f=1)
 * [Install phpLDAPadmin to operate LDAP Server in CentOS 7](https://www.server-world.info/en/note?os=CentOS_7&p=openldap&f=7)
