@@ -1,12 +1,12 @@
 ---
 layout: post
-title: '如何启用 OpenLDAP 的 memberOf Overlay 特性'
+title: '如何启用 OpenLDAP 的 memberOf 特性'
 tags: [code]
 ---
 
-之前，我们已经通过 Docker 的方式安装部署了 OpenLDAP 服务。所以本文将主要介绍如何启用 OpenLDAP 中非常有用的 memberOf Overlay 特性。
+之前，我们已经通过 Docker 的方式安装部署了 OpenLDAP 服务。所以本文将主要介绍如何启用 OpenLDAP 中非常有用的 memberOf 特性。
 
-很多场景下，我们需要快速的查询某一个用户是属于哪一个或多个组的（member of）。memberOf Overlay 正是提供了这样的一个功能：如果某个组中通过 `member` 属性新增了一个用户，OpenLDAP 便会自动在该用户上创建一个 `memberOf` 属性，其值为该组的 dn。
+很多场景下，我们需要快速的查询某一个用户是属于哪一个或多个组的（member of）。memberOf 正是提供了这样的一个功能：如果某个组中通过 `member` 属性新增了一个用户，OpenLDAP 便会自动在该用户上创建一个 `memberOf` 属性，其值为该组的 dn。
 
 然而，OpenLDAP 默认并不启用这个特性，我们需要通过相关的配置开启它。
 
@@ -17,7 +17,7 @@ tags: [code]
 
 首先，我们需要修改原镜像中的 `bootstrap/ldif/03-memberOf.ldif` 脚本中的 `olcMemberOfGroupOC` 和 `olcMemberOfMemberAD` 属性，结果如下：
 
-```ldif
+```
 # Load memberof module
 dn: cn=module{0},cn=config
 changetype: modify
@@ -104,4 +104,4 @@ dn: uid=john,ou=people,dc=xinhua,dc=io
 memberOf: cn=master,ou=group,dc=xinhua,dc=io
 ```
 
-最终，我们用上面的方式实现了对 memberOf Overlay 的支持。
+最终，我们用上面的方式实现了对 memberOf 的支持。
