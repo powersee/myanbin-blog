@@ -8,12 +8,12 @@ tags: [code]
 
 很多场景下，我们需要快速的查询某一个用户是属于哪一个或多个组的（member of）。memberOf 正是提供了这样的一个功能：如果某个组中通过 `member` 属性新增了一个用户，OpenLDAP 便会自动在该用户上创建一个 `memberOf` 属性，其值为该组的 dn。
 
-然而，OpenLDAP 默认并不启用这个特性，我们需要通过相关的配置开启它。
+遗憾的是，OpenLDAP 默认并不启用这个特性，因此我们需要通过相关的配置开启它。
 
 
-## 一、创建一个支持 memberOf Overlay 的 Docker 镜像
+## 一、创建一个支持 memberOf 的 Docker 镜像
 
-我们的思路是以 [osixia/openldap](https://github.com/osixia/docker-openldap) 为基准，通过 Dockerfile 来扩展其启动脚本，来实现对 memberOf Overlay 的支持。
+我们的思路是以 [osixia/openldap](https://github.com/osixia/docker-openldap) 为基准，通过 Dockerfile 来扩展其启动脚本，来实现对 memberOf 的支持。
 
 首先，我们需要修改原镜像中的 `bootstrap/ldif/03-memberOf.ldif` 脚本中的 `olcMemberOfGroupOC` 和 `olcMemberOfMemberAD` 属性，结果如下：
 
