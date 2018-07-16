@@ -18,7 +18,7 @@ layout: default
 <article class="post">
   <h1 class="post-title">{{page.title}}</h1>
   <div class="post-date">
-    <span><span class="icon icon-calendar"></span> 发表于 <time datetime="{{page.date | date_to_xmlschema}}">{{page.date | date: '%m/%d/%Y'}}</time> &middot;</span>
+    <span><span class="icon icon-calendar"></span> 发表于 <time datetime="{{page.date | date_to_xmlschema}}">{{page.date | date: '%Y年%m月%d日'}}</time> &middot;</span>
     {% if tags_content != '' %}归类于{{tags_content}} &middot;{% endif %}
     阅读量 <span id="busuanzi_value_page_pv"></span> &middot;
     <span><a href="https://github.com/myanbin/myanbin.github.io/edit/master/{{page.path}}">报告错误</a></span>
