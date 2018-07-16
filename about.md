@@ -4,7 +4,7 @@ title: "关于"
 permalink: about.html
 image: /public/images/redflag.jpg
 color: '#da4939'
-order: 6
+order: 7
 ---
 
 
