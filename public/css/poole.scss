@@ -219,7 +219,7 @@ pre code {
 .highlight {
   margin-bottom: 1rem;
   /* Disableling the border radius prevents repainting when scrolling on mobile */
-  /*border-radius: 4px;*/
+  border-radius: 4px;
 }
 .highlight pre {
   margin-bottom: 0;
@@ -404,7 +404,7 @@ th {
   color: #ddd;
 }
 
-.post img[alt]::after {
+.post img::after {
   content: attr(alt);
   display: block;
   text-align: center;
@@ -449,10 +449,6 @@ div.footnotes::before {
 }
 
 
-.MathJax, .MathJax_SVG {
-  font-size: 0.8rem !important;
-}
-
 /**
  * Home Page Styles
  *
@@ -488,7 +484,7 @@ ul.related-posts {
   list-style: none;
 }
 
-ul.related-posts .heading:after {
+ul.related-posts .heading::after {
   float: left;
   width: 0;
   white-space: nowrap;

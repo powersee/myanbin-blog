@@ -286,7 +286,7 @@ Alias /ldapadmin /usr/share/phpldapadmin/htdocs
 
 随着容器化技术和 Docker 的快速发展，打包和部署应用程序变得更加简单和灵活。OpenLDAP 和 phpLDAPadmin 也有自己的 Docker 镜像，使用下面的命令，可以快速的安装 OpenLDAP 和 phpLDAPadmin 环境：
 
-```
+```sh
 [root@localhost ~]# docker run --name ldap_core -p 389:389 -p 636:636 --env LDAP_ORGANISATION="XINHUA.IO" --env LDAP_DOMAIN="xinhua.io" --env LDAP_ADMIN_PASSWORD="Passw0rd" --detach osixia/openldap
 
 [root@localhost ~]# docker run --name ldap_web -p 80:80 -p 443:443 --link ldap_core:ldap_core --env PHPLDAPADMIN_LDAP_HOSTS=ldap_core --detach osixia/phpldapadmin

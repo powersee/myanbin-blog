@@ -20,7 +20,7 @@ analytics:        'UA-32028925-2'
 
 # Fallback image and color if not overwritten for tag or post
 image:            /public/images/mountains.jpg
-color:            '#0090C8'
+color:            '#077CBC'
 
 author:
   name:           '饮冰先生'
