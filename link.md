@@ -2,7 +2,6 @@
 layout: page
 title: "友链"
 permalink: link.html
-color: '#000000'
 order: 5
 ---
 

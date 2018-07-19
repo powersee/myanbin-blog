@@ -23,10 +23,10 @@ layout: default
       {% assign date = currentdate %}
     {% endif %}
     <li>
-      <h4>
-        <a href="{{post.url | prepend:site.baseurl}}"><span>{{post.title}}</span></a>
-        <span class="refinfo">{{post.date | date: "%m/%d"}}</span>
-      </h4>
+      <div class="heading">
+        <a href="{{site.baseurl}}{{post.url}}"><span>{{post.title}}</span></a>
+        <span class="timestamp">{{post.date | date: "%m/%d"}}</span>
+      </div>
     </li>
     {% if forloop.last %}</ul>{% endif %}
   {% endfor %}
