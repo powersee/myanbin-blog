@@ -4,7 +4,7 @@ title: '如何启用 OpenLDAP 的 memberOf 特性'
 tags: [code]
 ---
 
-之前，我们已经通过 Docker 的方式安装部署了 OpenLDAP 服务。所以本文将主要介绍如何启用 OpenLDAP 中非常有用的 memberOf 特性。
+之前，我们已经通过 Docker 的方式安装部署了 [OpenLDAP 服务]({{site.baseurl}}{% link _posts/2018-01-02-openldap-in-centos-7.md %})。所以本文将主要介绍如何启用 OpenLDAP 中非常有用的 memberOf 特性。
 
 很多场景下，我们需要快速的查询某一个用户是属于哪一个或多个组的（member of）。memberOf 正是提供了这样的一个功能：如果某个组中通过 `member` 属性新增了一个用户，OpenLDAP 便会自动在该用户上创建一个 `memberOf` 属性，其值为该组的 dn。
 
