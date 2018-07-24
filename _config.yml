@@ -20,7 +20,7 @@ analytics:        'UA-32028925-2'
 
 # Fallback image and color if not overwritten for tag or post
 image:            /public/images/geometry.jpg
-color:            '#077CBC'
+color:            '#da4939'
 
 author:
   name:           '饮冰先生'
