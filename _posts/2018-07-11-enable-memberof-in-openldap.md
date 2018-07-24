@@ -17,7 +17,7 @@ tags: [code]
 
 首先，我们需要修改原镜像中的 `bootstrap/ldif/03-memberOf.ldif` 脚本中的 `olcMemberOfGroupOC` 和 `olcMemberOfMemberAD` 属性，结果如下：
 
-```yaml
+```
 # Load memberof module
 dn: cn=module{0},cn=config
 changetype: modify
@@ -50,14 +50,14 @@ ADD bootstrap /container/service/slapd/assets/config/bootstrap
 
 然后通过如下命令，便可以构建出新的镜像 myanbin/openldap：
 
-```sh
-docker build -t myanbin/openldap:0.1.0 .
+```terminal
+$ docker build -t myanbin/openldap:0.1.0 .
 ```
 
 最后运行此镜像即可：
 
-```sh
-docker run --name ldap_core -p 389:389 -p 636:636 --detach myanbin/openldap
+```terminal
+$ docker run --name ldap_core -p 389:389 -p 636:636 --detach myanbin/openldap
 ```
 
 
@@ -65,7 +65,7 @@ docker run --name ldap_core -p 389:389 -p 636:636 --detach myanbin/openldap
 
 首先我们导入一个用户：
 
-```sh
+```terminal
 [root@localhost ~]# vim add_user.ldif
 dn: uid=john,ou=people,dc=xinhua,dc=io
 cn: John Doe
@@ -86,7 +86,7 @@ objectClass: inetOrgPerson
 
 然后再导入一个组：
 
-```sh
+```terminal
 [root@localhost ~]# vim add_group.ldif
 dn: cn=master,ou=group,dc=xinhua,dc=io
 objectClass: groupOfNames
@@ -98,7 +98,7 @@ member: uid=john,ou=people,dc=xinhua,dc=io
 
 最后通过 `ldapsearch` 命令可以查询到，该用户属性中已经增加了 `memberOf`：
 
-```sh
+```terminal
 [root@localhost ~]# ldapsearch -x -H ldap://172.16.168.120 -b dc=xinhua,dc=io -D "cn=admin,dc=xinhua,dc=io" -W memberOf
 dn: uid=john,ou=people,dc=xinhua,dc=io
 memberOf: cn=master,ou=group,dc=xinhua,dc=io

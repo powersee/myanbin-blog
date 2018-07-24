@@ -22,13 +22,13 @@ CNPM 是一个可以提供 npm 私有化部署的开源方案。它提供了 Jav
 
 首先从 GitHub 上将源代码下载到本地：
 
-```sh
+```terminal
 $ git clone https://github.com/cnpm/cnpmjs.org.git $HOME/cnpmjs.org
 ```
 
 创建一个 MySQL 数据库实例，并将 CNPM 源码中的 SQL 导入：
 
-```sh
+```terminal
 mysql> create database cnpmjs;
 mysql> use cnpmjs;
 mysql> source ./docs/db.sql;
@@ -57,13 +57,13 @@ module.exports = {
 
 使用下面的命令来安装相关依赖：
 
-```sh
+```terminal
 $ npm install --build-from-source
 ```
 
 启动服务：
 
-```sh
+```terminal
 $ npm run start
 ```
 
@@ -73,14 +73,14 @@ $ npm run start
 
 为了避免与官方的 npm 冲突，我们需要安装 cnpm 来使用本地的 npm 仓库，并将其源设置为私有 npm 仓库：
 
-```sh
+```terminal
 $ npm intsall -g cnpm
 $ cnpm config set registry https://registry.npm.xinhua.io
 ```
 
 假设我们想把一个 JavaScript 模块发布到这个私有 npm 仓库，则可以在该模块目录下使用如下命令：
 
-```sh
+```terminal
 # make sure you have login cnpm
 $ cnpm publish
 ```

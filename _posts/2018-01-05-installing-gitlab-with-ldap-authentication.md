@@ -14,7 +14,7 @@ GitLab 有 CE（社区版）和 EE（企业版）两个版本，我们使用的�
 
 首先，我们需要下载下面这些 GitLab 必需的依赖包：
 
-```sh
+```terminal
 [root@localhost ~]# yum install -y curl policycoreutils-python openssh-server postfix
 [root@localhost ~]# systemctl enable sshd
 [root@localhost ~]# systemctl start sshd
@@ -24,7 +24,7 @@ GitLab 有 CE（社区版）和 EE（企业版）两个版本，我们使用的�
 
 由于官方的镜像在国内下载速度较慢，我们使用了清华大学的镜像先把安装包下载到本地，并进行手动安装：
 
-```sh
+```terminal
 [root@localhost ~]# wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-10.3.1-ce.0.el7.x86_64.rpm
 [root@localhost ~]# EXTERNAL_URL="http://gitlab.xinhua.io" rpm -i gitlab-ce-10.3.1-ce.0.el7.x86_64.rpm
 ```
@@ -119,7 +119,7 @@ EOS
 
 配置修改完成之后，运行下面命令重启 GitLab 服务：
 
-```sh
+```terminal
 [root@localhost ~]# gitlab-ctl reconfigure
 ```
 
@@ -153,7 +153,7 @@ nginx['redirect_http_to_https'] = true
 
 然后创建一个 SSL 目录，并将网站证书导入进去：
 
-```sh
+```terminal
 [root@localhost ~]# mkdir -p /etc/gitlab/ssl
 [root@localhost ~]# chmod 700 /etc/gitlab/ssl
 [root@localhost ~]# cp gitlab.xinhua.io.key gitlab.xinhua.iocom.crt /etc/gitlab/ssl/

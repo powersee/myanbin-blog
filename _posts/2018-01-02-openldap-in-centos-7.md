@@ -45,7 +45,7 @@ LDAP 中的信息按照目录信息树结构组织，树中的一个节点称之
 
 第一步，需要切换到 root 账号来安装 OpenLDAP 相关程序包，并启动服务：
 
-```sh
+```terminal
 [xinhua@localhost ~]$ su -
 [root@localhost ~]# yum install -y openldap-servers openldap-clients
 [root@localhost ~]# cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
@@ -56,7 +56,7 @@ LDAP 中的信息按照目录信息树结构组织，树中的一个节点称之
 
 第二步，我们使用 `slappasswd` 命令来生成一个密码，并使用 LDIF（LDAP 数据交换格式）文件将其导入到 LDAP 中来配置管理员密码：
 
-```sh
+```terminal
 [root@localhost ~]# slappasswd
 New password: 
 Re-enter new password: 
@@ -78,7 +78,7 @@ modifying entry "olcDatabase={0}config,cn=config"
 
 第三步，我们需要向 LDAP 中导入一些基本的 Schema。这些 Schema 文件位于 `/etc/openldap/schema/` 目录中，定义了我们以后创建的条目可以使用哪些属性：
 
-```sh
+```terminal
 [root@localhost ~]# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif 
 SASL/EXTERNAL authentication started
 SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
@@ -100,7 +100,7 @@ adding new entry "cn=inetorgperson,cn=schema,cn=config"
 
 第四步，我们需要配置 LDAP 的顶级域（以 `dc=xinhua,dc=org` 为例）及其管理域：
 
-```sh
+```terminal
 [root@localhost ~]# slappasswd
 New password: 
 Re-enter new password: 
@@ -150,7 +150,7 @@ modifying entry "olcDatabase={2}hdb,cn=config"
 
 第五步，在上述基础上，我们来创建一个叫做 Xinhua News Agency 的组织，并在其下创建一个 Manager 的组织角色（该角色内的用户具有管理整个 LDAP 的权限）和 People 和 Group 两个组织单元：
 
-```sh
+```terminal
 [root@localhost ~]# vim basedomain.ldif
 # replace to your own domain name for "dc=***,dc=***" section
 dn: dc=xinhua,dc=org
@@ -184,7 +184,7 @@ adding new entry "ou=Group,dc=xinhua,dc=org"
 
 接下来，我们来创建一个叫作 Ada Catherine 的员工并将其分配到 Secretary 组来验证上述配置是否生效。
 
-```sh
+```terminal
 [root@localhost ~]# slappasswd
 New password: 
 Re-enter new password: 
@@ -220,7 +220,7 @@ adding new entry "cn=Secretary,ou=Group,dc=xinhua,dc=org"
 
 我们也可以使用 `ldapsearch` 命令来查看 LDAP 目录服务中的所有条目信息：
 
-```sh
+```terminal
 [root@localhost ~]# ldapsearch -x -b "dc=xinhua,dc=org" -H ldap://127.0.0.1
 # extended LDIF
 #
@@ -252,7 +252,7 @@ dc: xinhua
 
 在安装 phpLDAPadmin 之前，要确保服务器上已经启动了 Apache httpd 服务及 PHP [^2]。准备就绪后，我们按下面的操作来安装和配置 phpLDAPadmin：
 
-```sh
+```terminal
 [root@localhost ~]# yum -y install epel-release
 [root@localhost ~]# yum --enablerepo=epel -y install phpldapadmin
 
@@ -286,7 +286,7 @@ Alias /ldapadmin /usr/share/phpldapadmin/htdocs
 
 随着容器化技术和 Docker 的快速发展，打包和部署应用程序变得更加简单和灵活。OpenLDAP 和 phpLDAPadmin 也有自己的 Docker 镜像，使用下面的命令，可以快速的安装 OpenLDAP 和 phpLDAPadmin 环境：
 
-```sh
+```terminal
 [root@localhost ~]# docker run --name ldap_core -p 389:389 -p 636:636 --env LDAP_ORGANISATION="XINHUA.IO" --env LDAP_DOMAIN="xinhua.io" --env LDAP_ADMIN_PASSWORD="Passw0rd" --detach osixia/openldap
 
 [root@localhost ~]# docker run --name ldap_web -p 80:80 -p 443:443 --link ldap_core:ldap_core --env PHPLDAPADMIN_LDAP_HOSTS=ldap_core --detach osixia/phpldapadmin
