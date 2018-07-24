@@ -17,7 +17,7 @@ if (navigator.platform.match(/win32/i)) {
 		head.appendChild(style);
 	}
 }
-if (sessionStorage.getItem("mode")) {
-	$(body).addClass(sessionStorage.getItem("mode"));
+if (localStorage.getItem("mode")) {
+	document.querySelector('body').classList = localStorage.getItem("mode");
 }
 </script>
