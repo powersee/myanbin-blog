@@ -2,6 +2,7 @@
 layout: page
 title: "友链"
 permalink: link.html
+color: '#009688'
 order: 5
 ---
 
@@ -19,3 +20,5 @@ order: 5
 * [zkli blog](https://lizekui.github.io/)
 
 * [嗨森の猫窝](http://hexenq.com/blog/)
+
+* [Li RUONAN](http://liruonan.tech/)
