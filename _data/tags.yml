@@ -14,6 +14,7 @@
 life:
   name: 生活
   image: /public/images/yunshan.jpg
+  color: '#f44336'
   description: |
     「Simple living, noble thinking」。这是上学时我从西方哲学家斯宾诺莎那里得到的名言，并成了我追求简朴而具有理性思想的生活方式的座右铭。
 
