@@ -19,8 +19,8 @@ description:      >
 analytics:        'UA-32028925-2'
 
 # Fallback image and color if not overwritten for tag or post
-image:            /public/images/geometry.jpg
-color:            '#000000'
+image:            /public/images/mountains.jpg
+color:            '#dc322f'
 
 author:
   name:           '饮冰先生'
