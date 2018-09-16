@@ -192,8 +192,8 @@ code {
   /* Could be mistaken for a link if the user choses a similar link-color, so better no colored inline code. */
   border-radius: 0px;
   font-size: 1rem;
-  background-color: #f5f8fa;
-  color: #090909;
+  background-color: #fdf6e3;
+  color: #000000;
 }
 pre {
   display: block;
@@ -201,7 +201,7 @@ pre {
   margin-bottom: 1rem;
   padding: 1rem;
   line-height: 1.2;
-  background-color: #f5f8fa;
+  background-color: #fdf6e3;
   /* Prevent code linebreaks and allow side-scrolling (much better readability on mobile) */
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
@@ -209,7 +209,7 @@ pre {
 pre code {
   padding: 0;
   background-color: transparent;
-
+  color: #c3c3c3;
   /* Fit 80 chars in the block without side-scroll for large screens */
   font-size: .9rem;
 }

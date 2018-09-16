@@ -15,18 +15,18 @@ GitLab 有 CE（社区版）和 EE（企业版）两个版本，我们使用的�
 首先，我们需要下载下面这些 GitLab 必需的依赖包：
 
 ```terminal
-[root@localhost ~]# yum install -y curl policycoreutils-python openssh-server postfix
-[root@localhost ~]# systemctl enable sshd
-[root@localhost ~]# systemctl start sshd
-[root@localhost ~]# systemctl enable postfix
-[root@localhost ~]# systemctl start postfix
+# yum install -y curl policycoreutils-python openssh-server postfix
+# systemctl enable sshd
+# systemctl start sshd
+# systemctl enable postfix
+# systemctl start postfix
 ```
 
 由于官方的镜像在国内下载速度较慢，我们使用了清华大学的镜像先把安装包下载到本地，并进行手动安装：
 
 ```terminal
-[root@localhost ~]# wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-10.3.1-ce.0.el7.x86_64.rpm
-[root@localhost ~]# EXTERNAL_URL="http://gitlab.xinhua.io" rpm -i gitlab-ce-10.3.1-ce.0.el7.x86_64.rpm
+# wget https://mirrors.tuna.tsinghua.edu.cn/gitlab-ce/yum/el7/gitlab-ce-10.3.1-ce.0.el7.x86_64.rpm
+# EXTERNAL_URL="http://gitlab.xinhua.io" rpm -i gitlab-ce-10.3.1-ce.0.el7.x86_64.rpm
 ```
 
 这样，一个最基本 GitLab 便安装完成了。我们在浏览器中访问 `http://localhost/` 便会进入 GitLab 的登录界面。首次使用时，需要按照页面提示设置管理员 root 的密码。
@@ -120,7 +120,7 @@ EOS
 配置修改完成之后，运行下面命令重启 GitLab 服务：
 
 ```terminal
-[root@localhost ~]# gitlab-ctl reconfigure
+# gitlab-ctl reconfigure
 ```
 
 这样，就简单的配置好了 LDAP 目录服务。打开浏览器访问 `http://localhost/` 便会看到在登录界面上多了一个 LDAP 的登录方式：
@@ -154,9 +154,9 @@ nginx['redirect_http_to_https'] = true
 然后创建一个 SSL 目录，并将网站证书导入进去：
 
 ```terminal
-[root@localhost ~]# mkdir -p /etc/gitlab/ssl
-[root@localhost ~]# chmod 700 /etc/gitlab/ssl
-[root@localhost ~]# cp gitlab.xinhua.io.key gitlab.xinhua.iocom.crt /etc/gitlab/ssl/
+# mkdir -p /etc/gitlab/ssl
+# chmod 700 /etc/gitlab/ssl
+# cp gitlab.xinhua.io.key gitlab.xinhua.iocom.crt /etc/gitlab/ssl/
 ```
 
 注意上面的证书必须以配置中的域名（如本文中的 `gitlab.xinhua.io`）为其文件名。

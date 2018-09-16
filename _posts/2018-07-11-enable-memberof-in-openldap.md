@@ -41,7 +41,7 @@ olcMemberOfMemberOfAD: memberOf
 
 ```dockerfile
 FROM osixia/openldap
-MAINTAINER Yanbin Ma <myanbin@gmail.com>
+LABEL maintainer "Yanbin Ma <myanbin@gmail.com>"
 
 ENV LDAP_ORGANISATION="XINHUA.IO" LDAP_DOMAIN="xinhua.io" LDAP_ADMIN_PASSWORD="Passw0rd"
 
@@ -66,7 +66,7 @@ $ docker run --name ldap_core -p 389:389 -p 636:636 --detach myanbin/openldap
 首先我们导入一个用户：
 
 ```terminal
-[root@localhost ~]# vim add_user.ldif
+$ vim add_user.ldif
 dn: uid=john,ou=people,dc=xinhua,dc=io
 cn: John Doe
 givenName: John
@@ -81,25 +81,25 @@ objectClass: top
 objectClass: posixAccount
 objectClass: inetOrgPerson
 
-[root@localhost ~]# ldapadd -x -H ldap://172.16.168.120 -D "cn=admin,dc=xinhua,dc=io" -W -f ./add_user.ldif
+$ ldapadd -x -H ldap://172.16.168.120 -D "cn=admin,dc=xinhua,dc=io" -W -f ./add_user.ldif
 ```
 
 然后再导入一个组：
 
 ```terminal
-[root@localhost ~]# vim add_group.ldif
+$ vim add_group.ldif
 dn: cn=master,ou=group,dc=xinhua,dc=io
 objectClass: groupOfNames
 cn: master
 member: uid=john,ou=people,dc=xinhua,dc=io
 
-[root@localhost ~]# ldapadd -x -H ldap://172.16.168.120 -D "cn=admin,dc=xinhua,dc=io" -W -f ./add_group.ldif
+$ ldapadd -x -H ldap://172.16.168.120 -D "cn=admin,dc=xinhua,dc=io" -W -f ./add_group.ldif
 ```
 
 最后通过 `ldapsearch` 命令可以查询到，该用户属性中已经增加了 `memberOf`：
 
 ```terminal
-[root@localhost ~]# ldapsearch -x -H ldap://172.16.168.120 -b dc=xinhua,dc=io -D "cn=admin,dc=xinhua,dc=io" -W memberOf
+$ ldapsearch -x -H ldap://172.16.168.120 -b dc=xinhua,dc=io -D "cn=admin,dc=xinhua,dc=io" -W memberOf
 dn: uid=john,ou=people,dc=xinhua,dc=io
 memberOf: cn=master,ou=group,dc=xinhua,dc=io
 ```

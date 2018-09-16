@@ -47,29 +47,29 @@ LDAP 中的信息按照目录信息树结构组织，树中的一个节点称之
 
 ```terminal
 [xinhua@localhost ~]$ su -
-[root@localhost ~]# yum install -y openldap-servers openldap-clients
-[root@localhost ~]# cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
-[root@localhost ~]# chown ldap. /var/lib/ldap/DB_CONFIG
-[root@localhost ~]# systemctl enable slapd
-[root@localhost ~]# systemctl start slapd
+# yum install -y openldap-servers openldap-clients
+# cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG
+# chown ldap. /var/lib/ldap/DB_CONFIG
+# systemctl enable slapd
+# systemctl start slapd
 ```
 
 第二步，我们使用 `slappasswd` 命令来生成一个密码，并使用 LDIF（LDAP 数据交换格式）文件将其导入到 LDAP 中来配置管理员密码：
 
 ```terminal
-[root@localhost ~]# slappasswd
+# slappasswd
 New password: 
 Re-enter new password: 
 {SSHA}KS/bFZ8KTmO56khHjJvM97l7zivH1MwG
 
-[root@localhost ~]# vim chrootpw.ldif
+# vim chrootpw.ldif
 # specify the password generated above for "olcRootPW" section
 dn: olcDatabase={0}config,cn=config
 changetype: modify
 add: olcRootPW
 olcRootPW: {SSHA}KS/bFZ8KTmO56khHjJvM97l7zivH1MwG
 
-[root@localhost ~]# ldapadd -Y EXTERNAL -H ldapi:/// -f chrootpw.ldif
+# ldapadd -Y EXTERNAL -H ldapi:/// -f chrootpw.ldif
 SASL/EXTERNAL authentication started
 SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
 SASL SSF: 0
@@ -79,19 +79,19 @@ modifying entry "olcDatabase={0}config,cn=config"
 第三步，我们需要向 LDAP 中导入一些基本的 Schema。这些 Schema 文件位于 `/etc/openldap/schema/` 目录中，定义了我们以后创建的条目可以使用哪些属性：
 
 ```terminal
-[root@localhost ~]# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif 
+# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif 
 SASL/EXTERNAL authentication started
 SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
 SASL SSF: 0
 adding new entry "cn=cosine,cn=schema,cn=config"
 
-[root@localhost ~]# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif 
+# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif 
 SASL/EXTERNAL authentication started
 SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
 SASL SSF: 0
 adding new entry "cn=nis,cn=schema,cn=config"
 
-[root@localhost ~]# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif 
+# ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif 
 SASL/EXTERNAL authentication started
 SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
 SASL SSF: 0
@@ -101,12 +101,12 @@ adding new entry "cn=inetorgperson,cn=schema,cn=config"
 第四步，我们需要配置 LDAP 的顶级域（以 `dc=xinhua,dc=org` 为例）及其管理域：
 
 ```terminal
-[root@localhost ~]# slappasswd
+# slappasswd
 New password: 
 Re-enter new password: 
 {SSHA}z/rsbmAjVtLlWeUB0xS5itLPI0VA1akD
 
-[root@localhost ~]# vim chdomain.ldif
+# vim chdomain.ldif
 # replace to your own domain name for "dc=***,dc=***" section
 # specify the password generated above for "olcRootPW" section
 dn: olcDatabase={1}monitor,cn=config
@@ -138,7 +138,7 @@ olcAccess: {0}to attrs=userPassword,shadowLastChange by
 olcAccess: {1}to dn.base="" by * read
 olcAccess: {2}to * by dn="cn=Manager,dc=xinhua,dc=org" write by * read
 
-[root@localhost ~]# ldapmodify -Y EXTERNAL -H ldapi:/// -f chdomain.ldif 
+# ldapmodify -Y EXTERNAL -H ldapi:/// -f chdomain.ldif 
 SASL/EXTERNAL authentication started
 SASL username: gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth
 SASL SSF: 0
@@ -151,7 +151,7 @@ modifying entry "olcDatabase={2}hdb,cn=config"
 第五步，在上述基础上，我们来创建一个叫做 Xinhua News Agency 的组织，并在其下创建一个 Manager 的组织角色（该角色内的用户具有管理整个 LDAP 的权限）和 People 和 Group 两个组织单元：
 
 ```terminal
-[root@localhost ~]# vim basedomain.ldif
+# vim basedomain.ldif
 # replace to your own domain name for "dc=***,dc=***" section
 dn: dc=xinhua,dc=org
 objectClass: top
@@ -172,7 +172,7 @@ dn: ou=Group,dc=xinhua,dc=org
 objectClass: organizationalUnit
 ou: Group
 
-[root@localhost ~]# ldapadd -x -D cn=Manager,dc=xinhua,dc=org -W -f basedomain.ldif 
+# ldapadd -x -D cn=Manager,dc=xinhua,dc=org -W -f basedomain.ldif 
 Enter LDAP Password: # directory manager's password
 adding new entry "dc=xinhua,dc=org"
 adding new entry "cn=Manager,dc=xinhua,dc=org"
@@ -185,12 +185,12 @@ adding new entry "ou=Group,dc=xinhua,dc=org"
 接下来，我们来创建一个叫作 Ada Catherine 的员工并将其分配到 Secretary 组来验证上述配置是否生效。
 
 ```terminal
-[root@localhost ~]# slappasswd
+# slappasswd
 New password: 
 Re-enter new password: 
 {SSHA}HTGqAd4p6fOOIVHm7VZYUSorWGfnrqAA
 
-[root@localhost ~]# vim ldapuser.ldif
+# vim ldapuser.ldif
 # create new
 # replace to your own domain name for "dc=***,dc=***" section
 dn: uid=ada,ou=People,dc=xinhua,dc=org
@@ -212,7 +212,7 @@ cn: Secretary
 gidNumber: 1000
 memberUid: ada
 
-[root@localhost ~]# ldapadd -x -D cn=Manager,dc=xinhua,dc=org -W -f ldapuser.ldif
+# ldapadd -x -D cn=Manager,dc=xinhua,dc=org -W -f ldapuser.ldif
 Enter LDAP Password:
 adding new entry "uid=ada,ou=People,dc=xinhua,dc=org"
 adding new entry "cn=Secretary,ou=Group,dc=xinhua,dc=org"
@@ -221,7 +221,7 @@ adding new entry "cn=Secretary,ou=Group,dc=xinhua,dc=org"
 我们也可以使用 `ldapsearch` 命令来查看 LDAP 目录服务中的所有条目信息：
 
 ```terminal
-[root@localhost ~]# ldapsearch -x -b "dc=xinhua,dc=org" -H ldap://127.0.0.1
+# ldapsearch -x -b "dc=xinhua,dc=org" -H ldap://127.0.0.1
 # extended LDIF
 #
 # LDAPv3
@@ -243,7 +243,7 @@ dc: xinhua
 如果要删除一个条目，可以按下面的命令操作：
 
 ```sh
-[root@localhost ~]# ldapdelete -x -W -D 'cn=Manager,dc=xinhua,dc=org' "uid=ada,ou=People,dc=xinhua,dc=org"
+# ldapdelete -x -W -D 'cn=Manager,dc=xinhua,dc=org' "uid=ada,ou=People,dc=xinhua,dc=org"
 ```
 
 ## 三、使用 phpLDAPadmin 来管理 LDAP 服务
@@ -253,15 +253,15 @@ dc: xinhua
 在安装 phpLDAPadmin 之前，要确保服务器上已经启动了 Apache httpd 服务及 PHP [^2]。准备就绪后，我们按下面的操作来安装和配置 phpLDAPadmin：
 
 ```terminal
-[root@localhost ~]# yum -y install epel-release
-[root@localhost ~]# yum --enablerepo=epel -y install phpldapadmin
+# yum -y install epel-release
+# yum --enablerepo=epel -y install phpldapadmin
 
-[root@localhost ~]# vim /etc/phpldapadmin/config.php
+# vim /etc/phpldapadmin/config.php
 # line 397: uncomment, line 398: comment out
 $servers->setValue('login','attr','dn');
 // $servers->setValue('login','attr','uid');
 
-[root@localhost ~]# vim /etc/httpd/conf.d/phpldapadmin.conf
+# vim /etc/httpd/conf.d/phpldapadmin.conf
 
 Alias /phpldapadmin /usr/share/phpldapadmin/htdocs
 Alias /ldapadmin /usr/share/phpldapadmin/htdocs
@@ -272,7 +272,7 @@ Alias /ldapadmin /usr/share/phpldapadmin/htdocs
     # line 12: add access permission ip range
     Require ip 10.0.0.0/24
 
-[root@localhost ~]# systemctl restart httpd
+# systemctl restart httpd
 ```
 
 安装成功的话，在浏览器中访问 `http://localhost:8000/phpldapadmin/` 便会进入 phpLDAPadmin 管理页面：
@@ -287,9 +287,9 @@ Alias /ldapadmin /usr/share/phpldapadmin/htdocs
 随着容器化技术和 Docker 的快速发展，打包和部署应用程序变得更加简单和灵活。OpenLDAP 和 phpLDAPadmin 也有自己的 Docker 镜像，使用下面的命令，可以快速的安装 OpenLDAP 和 phpLDAPadmin 环境：
 
 ```terminal
-[root@localhost ~]# docker run --name ldap_core -p 389:389 -p 636:636 --env LDAP_ORGANISATION="XINHUA.IO" --env LDAP_DOMAIN="xinhua.io" --env LDAP_ADMIN_PASSWORD="Passw0rd" --detach osixia/openldap
+# docker run --name ldap_core -p 389:389 -p 636:636 --env LDAP_ORGANISATION="XINHUA.IO" --env LDAP_DOMAIN="xinhua.io" --env LDAP_ADMIN_PASSWORD="Passw0rd" --detach osixia/openldap
 
-[root@localhost ~]# docker run --name ldap_web -p 80:80 -p 443:443 --link ldap_core:ldap_core --env PHPLDAPADMIN_LDAP_HOSTS=ldap_core --detach osixia/phpldapadmin
+# docker run --name ldap_web -p 80:80 -p 443:443 --link ldap_core:ldap_core --env PHPLDAPADMIN_LDAP_HOSTS=ldap_core --detach osixia/phpldapadmin
 ```
 
 在生产环境中，我们使用 Docker 的方式来部署 OpenLDAP。
