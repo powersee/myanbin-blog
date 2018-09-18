@@ -17,7 +17,7 @@ tags: [code]
 
 首先，我们需要修改原镜像中的 `bootstrap/ldif/03-memberOf.ldif` 脚本中的 `olcMemberOfGroupOC` 和 `olcMemberOfMemberAD` 属性，结果如下：
 
-```
+```yaml
 # Load memberof module
 dn: cn=module{0},cn=config
 changetype: modify
@@ -104,4 +104,4 @@ dn: uid=john,ou=people,dc=xinhua,dc=io
 memberOf: cn=master,ou=group,dc=xinhua,dc=io
 ```
 
-最终，我们用上面的方式实现了对 memberOf 的支持。
+最终，我们在 OpenLDAP 中实现了对 memberOf 的支持。
