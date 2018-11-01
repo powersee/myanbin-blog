@@ -21,8 +21,12 @@
           \/ZZZZZZZZZZZZZZZZZ/
 ```
 
-这个是**饮冰先生的博客**的源码，使用 Jekyll 来生成静态网页。主題是 hydedark。
+这是 [饮冰先生的博客](https://myanbin.github.io/) 的源码，使用 Jekyll 来生成静态网页。主題是 hydedark。
 
-这些代码（不包含博客中的文字和图片内容）是开源的，你可以自由的使用它们。
 
-欢迎访问[我的博客](https://myanbin.github.io/)！
+如果您喜欢这个博客主题，可以自由的使用它。但是您也需要尽如下义务：
+
+1. 保留源代码中的所有版权信息；
+2. 将 **饮冰先生的博客** （网址：`https://myanbin.github.io/`） 加入到您的友情链接中；
+
+如有其他问题，欢迎联系 ma.yanbin@qq.com

@@ -48,6 +48,10 @@ body {
   position: relative;
 }
 
+/*
+ * Add `class="night"` to enable Night Mode
+ * Copyright 2018 Ma Yanbin <myanbin@gmail.com>
+ */
 body.night {
   background-color: #061f2f;
   color: #d3d4d4;
@@ -81,6 +85,7 @@ body.night .highlight .k {
 body.night ul.related-posts a,
 body.night ul.related-posts .timestamp {
   background-color: #061f2f;
+  color: #d3d4d4;
 }
 
 /* No `:visited` state is required by default (browsers will use `a`) */
