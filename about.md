@@ -26,7 +26,7 @@ order: 7
 
 我在[豆瓣读书](http://book.douban.com/people/yianbin)上分享我正在看的书以及想看的书，在 [GitHub](https://github.com/myanbin) 上维护我的代码以及关注开源项目，你还可以在 [Linkedin](https://www.linkedin.com/in/myanbin) 上找到我。
 
-我的一些摄影作品会发布在[影集]({{site.baseurl}}/photo.html) 中。
+我的一些摄影作品会发布在[影集]({{site.baseurl}}/photo.html)中。
 
 
 ## 为什么要写这个博客？
@@ -42,3 +42,8 @@ order: 7
 ## 联系我
 
 欢迎关注我的微博 [@孺子牛骑士](https://weibo.com/yianbin)，或发邮件到 [{{site.author.email}}](mailto:{{site.author.email}}) 与我联系。你也可以通过页面左下角的链接给我留言。
+
+
+<div class="message">
+身份声明：<code>AEF8 AF62 E961 00B5 A9F3  0A07 5736 AE9A 8AB7 83F6</code> 为本人所持 GPG 公钥指纹。
+</div>
