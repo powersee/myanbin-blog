@@ -6,7 +6,7 @@ url:              //myanbin.github.io
 img_url:          //infp.github.io/images
 
 # Set to '' in case of hosting on `https://<your-github-name>.github.io`
-baseurl:          'myanbin-blog'
+baseurl:          ''
 
 title:            '饮冰先生'
 
